@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+:root {
+  --color-bg: #fdfdff;
+  --color-bg-variant: #f5f8fd;
+}
+
+html,
+body,
+main {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--color-bg);
+}
+
+main {
+  display: flex;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4,
+p {
+  font-size: 1rem;
+}
+
+.add-book-wrapper {
+  min-height: 100%;
+  width: 20%;
+  background-color: blanchedalmond;
+}
+
+.books-wrapper {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.counter-wrapper {
+  min-height: 20%;
+  width: 70%;
+  background-color: aqua;
+}
+
+.books-list-wrapper {
+  min-height: 80%;
+  width: 70%;
+  background-color: aquamarine;
+}
+
+.edit-book-wrapper {
+  display: none;
+}
