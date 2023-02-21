@@ -9,6 +9,7 @@
 :root {
   --color-bg: #fdfdff;
   --color-bg-variant: #f5f8fd;
+  --color-action: #c45555;
 }
 
 html,
@@ -65,8 +66,40 @@ p {
 /* --------------------- Counter Section ---------------------- */
 .counter-wrapper {
   min-height: 20%;
-  width: 70%;
-  background-color: aqua;
+  min-width: 70%;
+  background-color: var(--color-bg-variant);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem;
+}
+.counter-mobile {
+  display: none;
+}
+.counter {
+  display: flex;
+  list-style: none;
+}
+.counter>*,
+.counter-mobile>* {
+  text-transform: uppercase;
+  margin-right: 1rem;
+  font-size: 1rem;
+}
+.counter span,
+.counter-mobile span {
+  font-size: 1.2rem;
+}
+.counter-wrapper> button {
+ background-color: var(--color-action);
+ color: var(--color-bg);
+ text-transform: uppercase;
+ padding: 1rem;
+ font-size: 1rem;
+ border: none;
+}
+.counter-wrapper > i {
+  display:none;
 }
 
 /* --------------------- List of Books Section ---------------- */
@@ -79,4 +112,35 @@ p {
 /* --------------------- Edit Book Section -------------------- */
 .edit-book-wrapper {
   display: none;
+}
+
+/* --------------------- Media Queries ------------------------ */
+
+/* Media Queries (XXL Devices) */
+@media screen and (min-width: 2048px) {
+
+}
+/* Media Queries (Medium Devices) */
+@media screen and (max-width: 1024px) {
+  .counter {
+    flex-direction: column;
+  }
+}
+/* Media Queries (Small Devices) */
+@media screen and (max-width: 600px) {
+ .counter-wrapper > button {
+  display: none;
+ }
+ .counter-wrapper >i {
+  display: block;
+  font-size: 3rem;
+  color: var(--color-action);
+ }
+ .counter {
+  display: none;
+ }
+ .counter-mobile {
+  display: block;
+  list-style: none;
+ }
 }
