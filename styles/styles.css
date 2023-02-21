@@ -80,3 +80,17 @@ p {
 .edit-book-wrapper {
   display: none;
 }
+
+/* --------------------- Media Queries -------------------- */
+/* Media Queries (XXL Devices) */
+@media screen and (min-width: 2048px) {
+
+}
+/* Media Queries (Medium Devices) */
+@media screen and (max-width: 1024px) {
+
+}
+/* Media Queries (Small Devices) */
+@media screen and (max-width: 600px) {
+
+}
