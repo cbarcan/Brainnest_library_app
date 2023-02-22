@@ -72,6 +72,44 @@ class Book {
   }
 }
 
+//--------------------- Add Book Section (H) ---------------------
+function addBookToThisLibrary(event) {
+  if (event !== undefined) {
+      event.preventDefault();
+  }
+
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const pages = parseInt(document.getElementById("pages").value);
+  const read = document.getElementById("read").checked;
+
+  if (pages < 0) {
+      alert("Please enter a valid number of pages.");
+      return;
+  }
+
+  const book = {
+      title: title,
+      author: author,
+      pages: pages,
+      read: read
+  };
+
+  if (localStorage.getItem("myLibrary") === null) {
+      var myLibrary = [];
+  } else {
+      var myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+  }
+
+  myLibrary.push(book);
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+
+  console.log(myLibrary);
+
+  // Reset the form
+  document.getElementById("myForm").reset();
+  }
+
 //--------------------- Add Book Section ---------------------
 
 const readCounter = () => {
