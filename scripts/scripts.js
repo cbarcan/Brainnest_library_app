@@ -16,12 +16,8 @@ class Book {
     this.readStatus = readStatus;
   }
 
-  addBookToLibrary = () => {
+  addBook() {
     myLibrary.push(this);
-    totalCount.innerText = myLibrary.length;
-  }
-
-  addBookToHTML() {
     const book = document.createElement("div");
     const title = document.createElement("p");
     const author = document.createElement("p");
@@ -51,6 +47,11 @@ class Book {
     book.appendChild(readStatus);
     book.appendChild(removal);
     books.appendChild(book);
+    totalCount.innerText = myLibrary.length;
+    if (this.readStatus === true) {
+      readCounter();
+    }
+    unreadCounter();
   }
 
   removeBook() {
@@ -99,18 +100,12 @@ const deleteAll = () => {
 const bookq = new Book("asda", "asda", 12312, true);
 // console.log(bookq);
 
-bookq.addBookToLibrary();
-
-const showBooks = () => {
-  myLibrary.forEach(book => book.addBookToHTML());
-  readCounter();
-  unreadCounter();
-}
+bookq.addBook();
 
 //added some random books to myLibrary
 for (let i = 1; i <= 20; i++) {
   const book = new Book(`book${i}`, `author${i}`, i);
-  book.addBookToLibrary();
+  book.addBook();
 }
 
 // console.log(myLibrary);
@@ -121,4 +116,4 @@ for (let i = 1; i <= 20; i++) {
 //--------------------- Edit Book Section --------------------
 
 
-showBooks();
+
