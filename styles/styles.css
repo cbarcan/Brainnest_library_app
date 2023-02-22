@@ -1,15 +1,41 @@
+@font-face {
+  font-family: "Asap";
+  src: url("../assets/fonts/AsapCondensed-MediumItalic.ttf") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Saira";
+  src: url("../assets/fonts/SairaCondensed-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Saira";
+  src: url("../assets/fonts/SairaCondensed-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Saira";
+  src: url("../assets/fonts/SairaCondensed-Light.ttf") format("truetype");
+  font-weight: lighter;
+}
+
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: normal;
+  font-family: "Quick", sans-serif;
 }
 
 :root {
   --color-bg: #fdfdff;
-  --color-bg-variant: #f5f8fd;
-  --color-action: #c45555;
+/*   --color-bg-variant: #f5f8fd; */
+  --color-bg-variant: #6D9773;
+  --color-bg-darker: #0C3B2E;
+  --color-action-danger: #B46617;
+  --color-action: #FFBA00;
 }
 
 html,
@@ -34,6 +60,7 @@ h5 {
 
 h1 {
   font-size: 3rem;
+  font-family: "Asap", sans-serif;
 }
 
 h2 {
@@ -53,7 +80,7 @@ p {
 .add-book-wrapper {
   min-height: 100%;
   width: 20%;
-  background-color: blanchedalmond;
+  background-color: var(--color-bg-variant);
 }
 
 .books-wrapper {
@@ -67,7 +94,7 @@ p {
 .counter-wrapper {
   min-height: 20%;
   min-width: 70%;
-  background-color: var(--color-bg-variant);
+  background-color: var(--color-bg);
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -91,7 +118,7 @@ p {
   font-size: 1.2rem;
 }
 .counter-wrapper> button {
- background-color: var(--color-action);
+ background-color: var(--color-action-danger);
  color: var(--color-bg);
  text-transform: uppercase;
  padding: 1rem;
@@ -106,7 +133,7 @@ p {
 .books-list-wrapper {
   min-height: 80%;
   width: 70%;
-  background-color: aquamarine;
+  background-color: var(--color-bg-darker);
 }
 
 /* --------------------- Edit Book Section -------------------- */
@@ -134,7 +161,7 @@ p {
  .counter-wrapper >i {
   display: block;
   font-size: 3rem;
-  color: var(--color-action);
+  color: var(--color-action-danger);
  }
  .counter {
   display: none;

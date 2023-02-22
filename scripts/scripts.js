@@ -1,4 +1,10 @@
 let myLibrary = [];
+let read = 0
+
+const readCount = document.getElementById("read");
+const unreadCount = document.getElementById("unread");
+const totalCount = document.getElementById("total");
+
 
 class Book {
 
@@ -12,6 +18,7 @@ class Book {
 
 const addBookToLibrary = (book) => {
   myLibrary.push(book);
+  totalCount.innerText = myLibrary.length;
 }
 
 //added some random books to myLibrary
@@ -24,6 +31,29 @@ console.log(myLibrary);
 console.log(book1);
 
 //--------------------- Add Book Section ---------------------
+
+const readCounter = () => {
+  read++
+  readCount.innerText = read;
+}
+
+const unreadCounter = () => {
+  let unread = myLibrary.length - read;
+  unreadCount.innerText = unread;
+}
+
+const deleteAll = () => {
+  myLibrary = [];
+  read = 0;
+  let unread = 0;
+  readCount.innerText = read;
+  unreadCount.innerText = unread;
+  totalCount.innerText = myLibrary.length;
+  return myLibrary;
+}
+
+/* readCounter();
+unreadCounter(); */
 
 //--------------------- Counter Section ----------------------
 
