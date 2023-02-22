@@ -1,16 +1,42 @@
+@font-face {
+  font-family: "Asap";
+  src: url("../assets/fonts/AsapCondensed-MediumItalic.ttf") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Saira";
+  src: url("../assets/fonts/SairaCondensed-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Saira";
+  src: url("../assets/fonts/SairaCondensed-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Saira";
+  src: url("../assets/fonts/SairaCondensed-Light.ttf") format("truetype");
+  font-weight: lighter;
+}
+
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: normal;
+  font-family: "Quick", sans-serif;
 }
 
 :root {
   --color-bg: #fdfdff;
-  --color-bg-variant: #f7fbff;
-  --color-header: rgb(1, 1, 107);
-  --color-action: #c45555;
+/*   --color-bg-variant: #f7fbff;
+  --color-header: rgb(1, 1, 107); */
+  --color-bg-variant: #6D9773;
+  --color-bg-darker: #0C3B2E;
+  --color-action-danger: #B46617;
+  --color-action: #FFBA00;
 }
 
 html,
@@ -42,6 +68,7 @@ h5 {
 
 h1 {
   font-size: 3rem;
+  font-family: "Asap", sans-serif;
 }
 
 h2 {
@@ -61,7 +88,7 @@ p {
 .add-book-wrapper {
   min-height: 100%;
   width: 20%;
-  background-color: blanchedalmond;
+  background-color: var(--color-bg-variant);
 }
 
 .books-wrapper {
@@ -103,14 +130,13 @@ p {
 .counter-mobile span {
   font-size: 1.2rem;
 }
-
-.counter-wrapper>button {
-  background-color: var(--color-action);
-  color: var(--color-bg);
-  text-transform: uppercase;
-  padding: 1rem;
-  font-size: 1rem;
-  border: none;
+.counter-wrapper> button {
+ background-color: var(--color-action-danger);
+ color: var(--color-bg);
+ text-transform: uppercase;
+ padding: 1rem;
+ font-size: 1rem;
+ border: none;
 }
 
 .counter-wrapper>i {
@@ -134,7 +160,7 @@ header.books-list-header {
   border: none;
   border-radius: 10px;
   box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.664);
-  background-color: var(--color-header);
+  background-color: var(--color-bg-darker);
   color: var(--color-bg);
 }
 
@@ -224,24 +250,21 @@ header.books-list-header {
 
 /* Media Queries (Small Devices) */
 @media screen and (max-width: 600px) {
-  .counter-wrapper>button {
-    display: none;
-  }
-
-  .counter-wrapper>i {
-    display: block;
-    font-size: 3rem;
-    color: var(--color-action);
-  }
-
-  .counter {
-    display: none;
-  }
-
-  .counter-mobile {
-    display: block;
-    list-style: none;
-  }
+ .counter-wrapper > button {
+  display: none;
+ }
+ .counter-wrapper >i {
+  display: block;
+  font-size: 3rem;
+  color: var(--color-action-danger);
+ }
+ .counter {
+  display: none;
+ }
+ .counter-mobile {
+  display: block;
+  list-style: none;
+ }
 }
 
 /* --------------------- Animations ------------------------ */

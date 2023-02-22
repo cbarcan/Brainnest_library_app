@@ -1,5 +1,11 @@
 let myLibrary = [];
 const books = document.getElementById("books");
+let read = 0
+
+const readCount = document.getElementById("read");
+const unreadCount = document.getElementById("unread");
+const totalCount = document.getElementById("total");
+
 
 class Book {
 
@@ -12,6 +18,7 @@ class Book {
 
   addBookToLibrary = () => {
     myLibrary.push(this);
+    totalCount.innerText = myLibrary.length;
   }
 
   addBookToHTML() {
@@ -54,6 +61,29 @@ class Book {
 }
 
 //--------------------- Add Book Section ---------------------
+
+const readCounter = () => {
+  read++
+  readCount.innerText = read;
+}
+
+const unreadCounter = () => {
+  let unread = myLibrary.length - read;
+  unreadCount.innerText = unread;
+}
+
+const deleteAll = () => {
+  myLibrary = [];
+  read = 0;
+  let unread = 0;
+  readCount.innerText = read;
+  unreadCount.innerText = unread;
+  totalCount.innerText = myLibrary.length;
+  return myLibrary;
+}
+
+/* readCounter();
+unreadCounter(); */
 
 //--------------------- Counter Section ----------------------
 
