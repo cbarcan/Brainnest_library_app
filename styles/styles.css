@@ -126,16 +126,7 @@ button[type="submit"] {
 }
 
 
-@media screen and (max-width: 480px) {
-  form {
-    max-width: none;
-    padding: 10px;
-  }
-  input[type="text"],
-  button[type="submit"] {
-    width: 100%;
-  }
-}
+
 
 /* --------------------- Counter Section ---------------------- */
 .counter-wrapper {
@@ -306,6 +297,17 @@ header.books-list-header {
   .counter-mobile {
   display: block;
   list-style: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  form {
+    max-width: none;
+    padding: 10px;
+  }
+  input[type="text"],
+  button[type="submit"] {
+    width: 100%;
   }
 }
 
