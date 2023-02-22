@@ -17,6 +17,7 @@ html,
 body,
 main {
   min-height: 100vh;
+  height: fit-content;
   width: 100%;
   background-color: var(--color-bg);
 }
@@ -64,6 +65,7 @@ p {
 }
 
 .books-wrapper {
+  height: fit-content;
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -73,6 +75,7 @@ p {
 /* --------------------- Counter Section ---------------------- */
 .counter-wrapper {
   min-height: 20%;
+  height: fit-content;
   width: 80%;
   display: flex;
   justify-content: space-around;
@@ -117,6 +120,7 @@ p {
 /* --------------------- List of Books Section ---------------- */
 .books-list-wrapper {
   min-height: 80%;
+  height: fit-content;
   width: 80%;
 }
 
@@ -219,7 +223,7 @@ header.books-list-header {
 }
 
 /* Media Queries (Small Devices) */
-@media screen and (max-width: 701px) {
+@media screen and (max-width: 600px) {
   .counter-wrapper>button {
     display: none;
   }

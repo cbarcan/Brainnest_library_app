@@ -10,6 +10,10 @@ class Book {
     this.readStatus = readStatus;
   }
 
+  addBookToLibrary = () => {
+    myLibrary.push(this);
+  }
+
   addBookToHTML() {
     const book = document.createElement("div");
     const title = document.createElement("p");
@@ -49,33 +53,33 @@ class Book {
   }
 }
 
-Book.prototype.addBookToLibrary = () => {
-  myLibrary.push(this);
-}
-
 //--------------------- Add Book Section ---------------------
 
 //--------------------- Counter Section ----------------------
 
 //--------------------- List of Books Section ----------------
-
-
 const bookq = new Book("asda", "asda", 12312, true);
 // console.log(bookq);
 
 bookq.addBookToHTML();
 
-//added some random books to myLibrary
-for (let i = 1; i <= 20; i++) {
-  this[`book${i}`] = new Book(`book${i}`, `author${i}`, i);
-  this[`book${i}`].addBookToLibrary();
+const showBooks = () => {
+  myLibrary.forEach(book => {
+    book.addBookToHTML()});
 }
 
-book1.addBookToHTML();
-// bookq.removeBookFromHTML();
-// // console.log(book1);
+//added some random books to myLibrary
+for (let i = 1; i <= 20; i++) {
+  const book = new Book(`book${i}`, `author${i}`, i);
+  book.addBookToLibrary();
+}
 
 // console.log(myLibrary);
 // console.log(book1);
+
+
+
 //--------------------- Edit Book Section --------------------
 
+
+showBooks();
