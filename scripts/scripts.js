@@ -1,23 +1,26 @@
 let myLibrary = [];
-const books = document.getElementById("books");
-let read = 0
+const booksWrapper = document.getElementById("books-list-wrapper");
+const books = document.querySelectorAll(".book-wrapper");
 
-const readCount = document.getElementById("read");
-const unreadCount = document.getElementById("unread");
-const totalCount = document.getElementById("total");
-
+let counterRead = 0;
+const readCount = document.getElementById("counter-read");
+const unreadCount = document.getElementById("counter-unread");
+const totalCount = document.getElementById("counter-total");
 
 class Book {
 
-  constructor (title, author, pages, readStatus = false) {
+  constructor(title, author, pages, readStatus = false) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.readStatus = readStatus;
   }
 
-  addBook() {
+  addBookToLibrary() {
     myLibrary.push(this);
+  }
+
+  addBookToHTML() {
     const book = document.createElement("div");
     const title = document.createElement("p");
     const author = document.createElement("p");
@@ -39,115 +42,110 @@ class Book {
     }
     removal.classList.add("removal");
     removal.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
+    const iReadStatus = readStatus.firstChild;
+    iReadStatus.onclick = () => this.statusChange();
     const iRemove = removal.firstChild;
-    iRemove.onclick = () => this.removeBook();
+    iRemove.onclick = () => {
+      this.removeBookFromLibrary();
+      this.removeBookFromHTML();
+    };
     book.appendChild(title);
     book.appendChild(author);
     book.appendChild(pages);
     book.appendChild(readStatus);
     book.appendChild(removal);
-    books.appendChild(book);
+    booksWrapper.appendChild(book);
     totalCount.innerText = myLibrary.length;
+    console.log(this.readStatus);
     if (this.readStatus === true) {
       readCounter();
     }
     unreadCounter();
   }
 
-  removeBook() {
+  removeBookFromLibrary() {
+    const index = myLibrary.indexOf(myLibrary.find(book => book.title === this.title));
+    myLibrary.splice(index, 1);
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+  }
+
+  removeBookFromHTML() {
     const title = Array.from(document.querySelectorAll('.title')).find(el => el.textContent === this.title);
     const book = title.parentElement;
     book.classList.add("removed");
-    book.addEventListener("animationend",() => {
-      const index = myLibrary.indexOf(myLibrary.find(book => book.title === this.title));
-      if (myLibrary[index].readStatus === true) {
-        read--;
-        readCount.innerText = read;
-      }
-      myLibrary.splice(index, 1);
-      books.removeChild(book);
-      unreadCounter();
-      totalCount.innerText = myLibrary.length;
+    book.addEventListener("animationend", () => {
+      booksWrapper.removeChild(book);
     });
+    if (this.readStatus === true) {
+      counterRead--;
+      readCount.innerText = counterRead;
+    }
+    unreadCounter();
+    totalCount.innerText = myLibrary.length;
+  }
+
+  statusChange() {
+    if (this.readStatus === true) {
+      this.readStatus = false;
+    } else {
+      this.readStatus = true;
+    }
   }
 }
 
 //--------------------- Add Book Section (H) ---------------------
-function addBookToThisLibrary(event) {
+function addBook(event) {
   if (event !== undefined) {
       event.preventDefault();
   }
-
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
   const pages = parseInt(document.getElementById("pages").value);
   const read = document.getElementById("read").checked;
-
   if (pages < 0) {
-      alert("Please enter a valid number of pages.");
-      return;
+    alert("Please enter a valid number of pages.");
+    return;
   }
-
-  const book = {
-      title: title,
-      author: author,
-      pages: pages,
-      read: read
-  };
-
-  if (localStorage.getItem("myLibrary") === null) {
-      var myLibrary = [];
-  } else {
-      var myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
-  }
-
-  myLibrary.push(book);
+  const book = new Book(title, author, pages, read);
+  book.addBookToLibrary();
+  book.addBookToHTML();
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-
-  console.log(myLibrary);
-
   // Reset the form
   document.getElementById("myForm").reset();
-  }
+}
 
-//--------------------- Add Book Section ---------------------
-
+//--------------------- Counter Section ----------------------
 const readCounter = () => {
-  read++
-  readCount.innerText = read;
+  counterRead++;
+  readCount.innerHTML = counterRead;
+  console.log(readCount);
 }
 
 const unreadCounter = () => {
-  let unread = myLibrary.length - read;
-  unreadCount.innerText = unread;
+  let counterUnread = myLibrary.length - counterRead;
+  unreadCount.innerText = counterUnread;
 }
 
 const deleteAll = () => {
   myLibrary = [];
-  read = 0;
+  counterRead = 0;
   let unread = 0;
-  readCount.innerText = read;
+  readCount.innerText = counterRead;
   unreadCount.innerText = unread;
   totalCount.innerText = myLibrary.length;
   return myLibrary;
 }
 
-//--------------------- Counter Section ----------------------
-
 //--------------------- List of Books Section ----------------
-const bookq = new Book("asda", "asda", 12312, true);
-// console.log(bookq);
-
-bookq.addBook();
-
-//added some random books to myLibrary
-for (let i = 1; i <= 20; i++) {
-  const book = new Book(`book${i}`, `author${i}`, i);
-  book.addBook();
+const showLibrary = () => {
+  if (localStorage.getItem("myLibrary") !== null) {
+    myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+  };
+  myLibrary.forEach(book => {
+    const newBook = new Book(book.title, book.author, book.pages, book.readStatus)
+    newBook.addBookToHTML();
+  });
 }
-
-// console.log(myLibrary);
-// console.log(book1);
 
 //--------------------- Change Read Status --------------------
 function toggleReadStatus(index) {
@@ -186,3 +184,5 @@ function editBookFormSubmit(event) {
   // Need a function that displays the books to go here.
   closeEditForm();
 }
+
+showLibrary();

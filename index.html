@@ -16,17 +16,17 @@
       <form id="myForm">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title"><br>
-      
+
         <label for="author">Author:</label>
         <input type="text" id="author" name="author"><br>
-      
+
         <label for="pages">Pages:</label>
         <input type="number" id="pages" name="pages"><br>
-      
+
         <label for="read">Already read:</label>
         <input type="checkbox" id="read" name="read"><br>
-      
-        <button onclick="addBookToThisLibrary(event)">Add Book</button>
+
+        <button onclick="addBook(event)">Add Book</button>
       </form>
     </section>
     <!--------------------- Edit Book Section --------------------->
@@ -51,31 +51,31 @@
       <section class="counter-wrapper">
         <ul class="counter">
           <li>
-            Books read: <span id="read">0</span>
+            Books read: <span id="counter-read">0</span>
           </li>
           <li>
-            Books unread: <span id="unread">0</span>
+            Books unread: <span id="counter-unread">0</span>
           </li>
           <li>
-            Total books: <span id="total">0</span>
+            Total books: <span id="counter-total">0</span>
           </li>
         </ul>
         <ul class="counter-mobile">
           <li>
-            read: <span id="read">0</span>
+            read: <span id="counter-read">0</span>
           </li>
           <li>
-            unread: <span id="unread">0</span>
+            unread: <span id="counter-unread">0</span>
           </li>
           <li>
-            Total: <span id="total">0</span>
+            Total: <span id="counter-total">0</span>
           </li>
         </ul>
         <button>Delete All</button>
         <i class="fa-solid fa-circle-minus"></i>
       </section>
       <!--------------------- List of Books Section --------------------->
-      <section class="books-list-wrapper" id="books">
+      <section class="books-list-wrapper" id="books-list-wrapper">
         <header class="books-list-header">
           <p class="title">TITLE</p>
           <p class="author">AUTHOR</p>
