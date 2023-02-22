@@ -233,7 +233,7 @@ header.books-list-header {
 }
 
 /* --------------------- Edit Book Section -------------------- */
-.edit-book-wrapper {
+#edit-book-wrapper {
   display: none;
 }
 
