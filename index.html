@@ -29,6 +29,22 @@
         <button onclick="addBookToThisLibrary(event)">Add Book</button>
       </form>
     </section>
+    <!--------------------- Edit Book Section --------------------->
+    <section id="edit-book-wrapper">
+      <form>
+        <input type="hidden" id="edit-index" name="edit-index">
+        <label for="edit-title">Title:</label>
+        <input type="text" id="edit-title" name="edit-title" required><br>
+        <label for="edit-author">Author:</label>
+        <input type="text" id="edit-author" name="edit-author" required><br>
+        <label for="edit-pages">Pages:</label>
+        <input type="number" id="edit-pages" name="edit-pages" required><br>
+        <label for="edit-read">Read:</label>
+        <input type="checkbox" id="edit-read" name="edit-read"><br>
+        <input type="submit" value="Save Changes" class="button">
+        <button id="close-edit-form-button" type="button" class="button" onclick="closeEditForm()">Cancel</button>
+      </form>
+    </section>
     <!--------------------- Books Section --------------------->
     <section class="books-wrapper">
       <!--------------------- Counter Section --------------------->
@@ -68,22 +84,6 @@
           <p class="removal">REMOVAL</p>
         </header>
       </section>
-    </section>
-    <!--------------------- Edit Book Section --------------------->
-    <section id="edit-book-wrapper">
-      <form>
-        <input type="hidden" id="edit-index" name="edit-index">
-        <label for="edit-title">Title:</label>
-        <input type="text" id="edit-title" name="edit-title" required><br>
-        <label for="edit-author">Author:</label>
-        <input type="text" id="edit-author" name="edit-author" required><br>
-        <label for="edit-pages">Pages:</label>
-        <input type="number" id="edit-pages" name="edit-pages" required><br>
-        <label for="edit-read">Read:</label>
-        <input type="checkbox" id="edit-read" name="edit-read"><br>
-        <input type="submit" value="Save Changes" class="button">
-        <button id="close-edit-form-button" type="button" class="button" onclick="closeEditForm()">Cancel</button>
-      </form>
     </section>
   </main>
   <script src="./scripts/scripts.js"></script>
