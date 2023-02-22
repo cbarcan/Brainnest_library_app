@@ -31,8 +31,8 @@
 
 :root {
   --color-bg: #fdfdff;
-/*   --color-bg-variant: #f5f8fd; */
-  --color-bg-variant: #6D9773;
+  --color-bg-variant: #f6fff8;
+  --color-bg-side: #6D9773;
   --color-bg-darker: #0C3B2E;
   --color-action-danger: #B46617;
   --color-action: #FFBA00;
@@ -42,11 +42,18 @@ html,
 body,
 main {
   min-height: 100vh;
+  height: fit-content;
   width: 100%;
   background-color: var(--color-bg);
 }
 
+body {
+  display: flex;
+  justify-content: center;
+}
+
 main {
+  max-width: 2048px;
   display: flex;
 }
 
@@ -80,10 +87,11 @@ p {
 .add-book-wrapper {
   min-height: 100%;
   width: 20%;
-  background-color: var(--color-bg-variant);
+  background-color: var(--color-bg-side);
 }
 
 .books-wrapper {
+  height: fit-content;
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -93,47 +101,135 @@ p {
 /* --------------------- Counter Section ---------------------- */
 .counter-wrapper {
   min-height: 20%;
-  min-width: 70%;
-  background-color: var(--color-bg);
+  height: fit-content;
+  width: 80%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 2rem;
+  padding: 2%;
 }
+
 .counter-mobile {
   display: none;
 }
+
 .counter {
   display: flex;
   list-style: none;
 }
+
 .counter>*,
 .counter-mobile>* {
   text-transform: uppercase;
   margin-right: 1rem;
   font-size: 1rem;
 }
+
 .counter span,
 .counter-mobile span {
   font-size: 1.2rem;
 }
 .counter-wrapper> button {
- background-color: var(--color-action-danger);
- color: var(--color-bg);
- text-transform: uppercase;
- padding: 1rem;
- font-size: 1rem;
- border: none;
+  background-color: var(--color-action-danger);
+  color: var(--color-bg);
+  text-transform: uppercase;
+  padding: 1rem;
+  font-size: 1rem;
+  border: none;
 }
-.counter-wrapper > i {
-  display:none;
+
+.counter-wrapper>i {
+  display: none;
 }
 
 /* --------------------- List of Books Section ---------------- */
 .books-list-wrapper {
   min-height: 80%;
-  width: 70%;
+  height: fit-content;
+  width: 80%;
+}
+
+header.books-list-header {
+  height: 70px;
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  padding: 0 2%;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.664);
   background-color: var(--color-bg-darker);
+  color: var(--color-bg);
+}
+
+.book-wrapper{
+  height: 70px;
+  width: 100%;
+  margin-bottom: 5px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 2%;
+  border: 1px solid rgba(192, 192, 192, 0.411);
+  border-radius: 10px;
+  box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.664);
+  background-color: var(--color-bg-variant);
+  -webkit-animation: slideIn 0.5s ease-in;
+  animation: slideIn 0.5s ease-in;
+}
+
+.book-wrapper:hover {
+  cursor: pointer;
+  background-color: var(--color-bg-side);
+  color: var(--color-bg);
+}
+
+.book-wrapper p {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.removed {
+  -webkit-animation: slideOut 0.5s ease;
+  animation: slideOut 0.5s ease;
+}
+
+.title {
+  width: 30%;
+}
+
+.author {
+  width: 20%;
+}
+
+.pages {
+  width: 10%;
+}
+
+.status {
+  width: 22%;
+  text-align: center;
+  justify-content: center;
+}
+
+.removal {
+  width: 18%;
+  text-align: center;
+  justify-content: center;
+  color: red;
+  position: relative;
+}
+
+.removal i{
+  transition: all 0.5s ease-in-out;
+}
+
+.removal i:hover {
+  -ms-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
 }
 
 /* --------------------- Edit Book Section -------------------- */
@@ -147,27 +243,74 @@ p {
 @media screen and (min-width: 2048px) {
 
 }
+
 /* Media Queries (Medium Devices) */
 @media screen and (max-width: 1024px) {
   .counter {
     flex-direction: column;
   }
 }
+
 /* Media Queries (Small Devices) */
 @media screen and (max-width: 600px) {
- .counter-wrapper > button {
+  .counter-wrapper > button {
   display: none;
- }
- .counter-wrapper >i {
+  }
+  .counter-wrapper >i {
   display: block;
   font-size: 3rem;
   color: var(--color-action-danger);
- }
- .counter {
+  }
+  .counter {
   display: none;
- }
- .counter-mobile {
+  }
+  .counter-mobile {
   display: block;
   list-style: none;
- }
+  }
+}
+
+/* --------------------- Animations ------------------------ */
+@-webkit-keyframes slideIn {
+  from {
+    opacity: 0;
+    left: 100vw;
+  }
+  to {
+    opacity: 1;
+    left: 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    left: 100vw;
+  }
+  to {
+    opacity: 1;
+    left: 0;
+  }
+}
+
+@-webkit-keyframes slideOut {
+  from {
+    opacity: 1;
+    left: 0;
+  }
+  to {
+    opacity: 0;
+    left: 100vw;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    left: 0;
+  }
+  to {
+    opacity: 0;
+    left: 100vw;
+  }
 }
