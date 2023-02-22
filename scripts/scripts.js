@@ -1,5 +1,6 @@
 let myLibrary = [];
-const books = document.getElementById("books");
+const booksWrapper = document.getElementById("books-list-wrapper");
+const books = document.querySelectorAll(".book-wrapper");
 let read = 0
 
 const readCount = document.getElementById("read");
@@ -9,15 +10,18 @@ const totalCount = document.getElementById("total");
 
 class Book {
 
-  constructor (title, author, pages, readStatus = false) {
+  constructor(title, author, pages, readStatus = false) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.readStatus = readStatus;
   }
 
-  addBook() {
+  addBookToLibrary() {
     myLibrary.push(this);
+  }
+
+  addBookToHTML() {
     const book = document.createElement("div");
     const title = document.createElement("p");
     const author = document.createElement("p");
@@ -39,14 +43,19 @@ class Book {
     }
     removal.classList.add("removal");
     removal.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
+    const iReadStatus = readStatus.firstChild;
+    iReadStatus.onclick = () => this.statusChange();
     const iRemove = removal.firstChild;
-    iRemove.onclick = () => this.removeBook();
+    iRemove.onclick = () => {
+      this.removeBookFromLibrary();
+      this.removeBookFromHTML();
+    };
     book.appendChild(title);
     book.appendChild(author);
     book.appendChild(pages);
     book.appendChild(readStatus);
     book.appendChild(removal);
-    books.appendChild(book);
+    booksWrapper.appendChild(book);
     totalCount.innerText = myLibrary.length;
     if (this.readStatus === true) {
       readCounter();
@@ -54,21 +63,32 @@ class Book {
     unreadCounter();
   }
 
-  removeBook() {
+  removeBookFromLibrary() {
+    const index = myLibrary.indexOf(myLibrary.find(book => book.title === this.title));
+    myLibrary.splice(index, 1);
+  }
+
+  removeBookFromHTML() {
     const title = Array.from(document.querySelectorAll('.title')).find(el => el.textContent === this.title);
     const book = title.parentElement;
     book.classList.add("removed");
-    book.addEventListener("animationend",() => {
-      const index = myLibrary.indexOf(myLibrary.find(book => book.title === this.title));
-      if (myLibrary[index].readStatus === true) {
-        read--;
-        readCount.innerText = read;
-      }
-      myLibrary.splice(index, 1);
-      books.removeChild(book);
-      unreadCounter();
-      totalCount.innerText = myLibrary.length;
+    book.addEventListener("animationend", () => {
+      booksWrapper.removeChild(book);
     });
+    if (this.readStatus === true) {
+      read--;
+      readCount.innerText = read;
+    }
+    unreadCounter();
+    totalCount.innerText = myLibrary.length;
+  }
+
+  statusChange() {
+    if (this.readStatus === true) {
+      this.readStatus = false;
+    } else {
+      this.readStatus = true;
+    }
   }
 }
 
@@ -100,18 +120,20 @@ const deleteAll = () => {
 const bookq = new Book("asda", "asda", 12312, true);
 // console.log(bookq);
 
-bookq.addBook();
+bookq.addBookToLibrary();
+bookq.addBookToHTML();
 
 //added some random books to myLibrary
 for (let i = 1; i <= 20; i++) {
   const book = new Book(`book${i}`, `author${i}`, i);
-  book.addBook();
+  book.addBookToLibrary();
+  book.addBookToHTML();
 }
 
-// console.log(myLibrary);
+console.log(myLibrary);
 // console.log(book1);
 
-
+console.log(myLibrary);
 
 //--------------------- Edit Book Section --------------------
 

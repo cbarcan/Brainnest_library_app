@@ -136,6 +136,7 @@ p {
   padding: 1rem;
   font-size: 1rem;
   border: none;
+  border-radius: 10px;
 }
 
 .counter-wrapper>i {
@@ -218,11 +219,11 @@ header.books-list-header {
   width: 18%;
   text-align: center;
   justify-content: center;
-  color: red;
   position: relative;
 }
 
 .removal i{
+  color: var(--color-action-danger);
   transition: all 0.5s ease-in-out;
 }
 
