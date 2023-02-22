@@ -98,6 +98,36 @@ p {
   align-items: center;
 }
 
+form {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 2%;
+  /* box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+input[type="text"],
+input[type="number"],
+button[type="submit"] {
+  display: block;
+  width: 90%;
+  padding: 10px;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+
+
 /* --------------------- Counter Section ---------------------- */
 .counter-wrapper {
   min-height: 20%;
@@ -267,6 +297,17 @@ header.books-list-header {
   .counter-mobile {
   display: block;
   list-style: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  form {
+    max-width: none;
+    padding: 10px;
+  }
+  input[type="text"],
+  button[type="submit"] {
+    width: 100%;
   }
 }
 
