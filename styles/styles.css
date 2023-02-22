@@ -31,9 +31,8 @@
 
 :root {
   --color-bg: #fdfdff;
-/*   --color-bg-variant: #f7fbff;
-  --color-header: rgb(1, 1, 107); */
-  --color-bg-variant: #6D9773;
+  --color-bg-variant: #f6fff8;
+  --color-bg-side: #6D9773;
   --color-bg-darker: #0C3B2E;
   --color-action-danger: #B46617;
   --color-action: #FFBA00;
@@ -88,7 +87,7 @@ p {
 .add-book-wrapper {
   min-height: 100%;
   width: 20%;
-  background-color: var(--color-bg-variant);
+  background-color: var(--color-bg-side);
 }
 
 .books-wrapper {
@@ -131,12 +130,12 @@ p {
   font-size: 1.2rem;
 }
 .counter-wrapper> button {
- background-color: var(--color-action-danger);
- color: var(--color-bg);
- text-transform: uppercase;
- padding: 1rem;
- font-size: 1rem;
- border: none;
+  background-color: var(--color-action-danger);
+  color: var(--color-bg);
+  text-transform: uppercase;
+  padding: 1rem;
+  font-size: 1rem;
+  border: none;
 }
 
 .counter-wrapper>i {
@@ -182,7 +181,7 @@ header.books-list-header {
 
 .book-wrapper:hover {
   cursor: pointer;
-  background-color: var(--color-header);
+  background-color: var(--color-bg-side);
   color: var(--color-bg);
 }
 
@@ -221,12 +220,16 @@ header.books-list-header {
   justify-content: center;
   color: red;
   position: relative;
+}
+
+.removal i{
   transition: all 0.5s ease-in-out;
 }
 
 .removal i:hover {
-  transform: scale(1.5, 1.5);
-  transition: all 0.5s ease-in-out;
+  -ms-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
 }
 
 /* --------------------- Edit Book Section -------------------- */
@@ -250,21 +253,21 @@ header.books-list-header {
 
 /* Media Queries (Small Devices) */
 @media screen and (max-width: 600px) {
- .counter-wrapper > button {
+  .counter-wrapper > button {
   display: none;
- }
- .counter-wrapper >i {
+  }
+  .counter-wrapper >i {
   display: block;
   font-size: 3rem;
   color: var(--color-action-danger);
- }
- .counter {
+  }
+  .counter {
   display: none;
- }
- .counter-mobile {
+  }
+  .counter-mobile {
   display: block;
   list-style: none;
- }
+  }
 }
 
 /* --------------------- Animations ------------------------ */

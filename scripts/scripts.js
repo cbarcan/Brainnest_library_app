@@ -43,7 +43,8 @@ class Book {
     }
     removal.classList.add("removal");
     removal.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
-    removal.onclick = () => this.removeBookFromHTML();
+    const iRemove = removal.firstChild;
+    iRemove.onclick = () => this.removeBook();
     book.appendChild(title);
     book.appendChild(author);
     book.appendChild(pages);
@@ -52,11 +53,21 @@ class Book {
     books.appendChild(book);
   }
 
-  removeBookFromHTML() {
+  removeBook() {
     const title = Array.from(document.querySelectorAll('.title')).find(el => el.textContent === this.title);
     const book = title.parentElement;
     book.classList.add("removed");
-    book.addEventListener("animationend",() => books.removeChild(book));
+    book.addEventListener("animationend",() => {
+      const index = myLibrary.indexOf(myLibrary.find(book => book.title === this.title));
+      if (myLibrary[index].readStatus === true) {
+        read--;
+        readCount.innerText = read;
+      }
+      myLibrary.splice(index, 1);
+      books.removeChild(book);
+      unreadCounter();
+      totalCount.innerText = myLibrary.length;
+    });
   }
 }
 
@@ -82,20 +93,18 @@ const deleteAll = () => {
   return myLibrary;
 }
 
-/* readCounter();
-unreadCounter(); */
-
 //--------------------- Counter Section ----------------------
 
 //--------------------- List of Books Section ----------------
 const bookq = new Book("asda", "asda", 12312, true);
 // console.log(bookq);
 
-bookq.addBookToHTML();
+bookq.addBookToLibrary();
 
 const showBooks = () => {
-  myLibrary.forEach(book => {
-    book.addBookToHTML()});
+  myLibrary.forEach(book => book.addBookToHTML());
+  readCounter();
+  unreadCounter();
 }
 
 //added some random books to myLibrary
