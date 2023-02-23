@@ -166,7 +166,7 @@ const showLibrary = () => {
 //--------------------- Change Read Status --------------------
 function toggleReadStatus(index) {
   myLibrary = getLocalStorage();
-  myLibrary[index].read = !myLibrary[index].read;
+  myLibrary[index].readStatus = !myLibrary[index].readStatus;
 
   // Need a function that updates the local storage to go here.
 }
@@ -177,7 +177,7 @@ function openEditForm(index) {
   document.getElementById("edit-title").value = book.title;
   document.getElementById("edit-author").value = book.author;
   document.getElementById("edit-pages").value = book.pages;
-  document.getElementById("edit-read").checked = book.read;
+  document.getElementById("edit-read").checked = book.readStatus;
   document.getElementById("edit-book-form").style.display = "block";
 }
 
@@ -195,7 +195,7 @@ function editBookFormSubmit(event) {
   myLibrary[index].title = title;
   myLibrary[index].author = author;
   myLibrary[index].pages = pages;
-  myLibrary[index].read = read;
+  myLibrary[index].readStatus = read;
   // Need a function that updates the local storage to go here.
   // Need a function that displays the books to go here.
   closeEditForm();
