@@ -120,10 +120,45 @@ function addBook(event) {
     alert("Please enter a valid number of pages.");
     return;
   }
+// <<<<<<< HEAD
+// <<<<<<< HEAD
+
+  // const book = {
+  //     title: title,
+  //     author: author,
+  //     pages: pages,
+  //     read: read
+  // };
+
+  if (localStorage.getItem("myLibrary") === null) {
+      var myLibrary = [];
+  } else {
+      let myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+  }
+
+  myLibrary.push(book);
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+
+  console.log(myLibrary);
+
+  // const form = document.getElementById("myForm");
+  // const toggleButton = document.getElementById("toggleForm");
+  // const addBookButton = document.getElementById("addBookButton");
+  
+  // if (window.innerWidth < 480) {
+  //       // hide the button and show the form
+  //       toggleButton.style.display = "block";
+  //       form.style.display = "none";
+  //       // document.body.style.overflow = "hidden"; // disable scrolling
+  //     } 
+
+
+// =======
   const book = new Book(title, author, pages, read);
   book.addBookToLibrary();
   book.addBookToHTML();
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+// >>>>>>> 40bdca5db089e49de114408d81b6389112f7f8f8
   // Reset the form
   document.getElementById("myForm").reset();
 }
@@ -138,7 +173,26 @@ function addBook(event) {
     toggleButton.style.display = "none";
     form.style.display = "block";
     // document.body.style.overflow = "hidden"; // disable scrolling
-  }
+// <<<<<<< HEAD
+}
+
+
+
+
+
+//--------------------- Add Book Section ---------------------
+// =======
+  const book = new Book(title, author, pages, read);
+  book.addBookToLibrary();
+  book.addBookToHTML();
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+  // Reset the form
+  document.getElementById("myForm").reset();
+
+// >>>>>>> master
+// =======
+//   }
+// >>>>>>> 40bdca5db089e49de114408d81b6389112f7f8f8
 
 //--------------------- Counter Section ----------------------
 const readCounter = () => {
