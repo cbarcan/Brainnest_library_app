@@ -13,14 +13,12 @@ const totalCountMobile = document.getElementById("counter-total-mobile");
 const modal = document.getElementById("modal");
 const toggleButton = document.getElementById("toggleForm");
 
-const updateLocalStorage = (array) =>{
-  localStorage.setItem("myLibrary", JSON.stringify(array));
-  return array;
+const updateLocalStorage = () =>{
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
 
 const retrieveBooks = () =>  {
   myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
-  return myLibrary;
 };
 
 class Book {
@@ -78,7 +76,6 @@ class Book {
     booksWrapper.appendChild(book);
     totalCount.innerText = myLibrary.length;
     totalCountMobile.innerText = myLibrary.length;
-    console.log(this.readStatus);
     if (this.readStatus === true) {
       readCounter();
     }
@@ -88,7 +85,7 @@ class Book {
   removeBookFromLibrary() {
     const index = myLibrary.indexOf(myLibrary.find(book => book.title === this.title));
     myLibrary.splice(index, 1);
-    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+    updateLocalStorage();
   }
 
   removeBookFromHTML() {
@@ -101,6 +98,7 @@ class Book {
     if (this.readStatus === true) {
       counterRead--;
       readCount.innerText = counterRead;
+      readCountMobile.innerHTML = counterRead;
     }
     unreadCounter();
     totalCount.innerText = myLibrary.length;
@@ -118,10 +116,11 @@ class Book {
     book.childNodes[3].firstChild.onclick = () => this.statusChange();
     const index = myLibrary.indexOf(myLibrary.find(book => book.title === this.title));
     myLibrary[index].readStatus = this.readStatus;
-    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+    updateLocalStorage();
     if (this.readStatus !== true) {
       counterRead--;
       readCount.innerText = counterRead;
+      readCountMobile.innerHTML = counterRead;
     } else {
       readCounter();
     }
@@ -145,11 +144,10 @@ function addBook(event) {
   const book = new Book(title, author, pages, read);
   book.addBookToLibrary();
   book.addBookToHTML();
-  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+  updateLocalStorage();
   // Reset the form
   document.getElementById("myForm").reset();
   modal.style.display = "none";
-  toggleButton.style.display = "block";
 }
 
 function toggleForm() {
@@ -160,17 +158,8 @@ function toggleForm() {
   //   // document.body.style.overflow = "hidden"; // disable scrolling
   // }
   // hide the button and show the form
-  toggleButton.style.display = "none";
   modal.style.display = "flex";
   // document.body.style.overflow = "hidden"; // disable scrolling
-}
-
-window.onresize = () => {
-  if (window.innerWidth > 1024) {
-    toggleButton.style.display = "none";
-  } else {
-    toggleButton.style.display = "block";
-  }
 }
 
 //--------------------- Counter Section ----------------------
@@ -178,7 +167,6 @@ const readCounter = () => {
   counterRead++;
   readCount.innerHTML = counterRead;
   readCountMobile.innerHTML = counterRead;
-  console.log(readCount);
 }
 
 const unreadCounter = () => {
@@ -197,13 +185,13 @@ const deleteAll = () => {
   unreadCountMobile.innerText = unread;
   totalCount.innerText = myLibrary.length;
   totalCountMobile.innerText = myLibrary.length;
-  updateLocalStorage(myLibrary);
+  updateLocalStorage();
   window.location.reload();
 }
 
-const sortByTitle = (array) => {
-  array = retrieveBooks();
-  array.sort((a, b) => {
+const sortByTitle = () => {
+  retrieveBooks();
+  myLibrary.sort((a, b) => {
     let titleA =  a.title.toLowerCase();
     let titleB = b.title.toLowerCase();
 
@@ -214,14 +202,13 @@ const sortByTitle = (array) => {
     }
     return 0;
   })
-  updateLocalStorage(array);
+  updateLocalStorage();
   window.location.reload();
-  return array;
 }
 
-const sortByAuthor = (array) => {
-  array = retrieveBooks();
-  array.sort((a, b) => {
+const sortByAuthor = () => {
+  retrieveBooks();
+  myLibrary.sort((a, b) => {
   let authorA =  a.author.toLowerCase();
     let authorB = b.author.toLowerCase();
 
@@ -232,22 +219,17 @@ const sortByAuthor = (array) => {
     }
     return 0;
   })
-  updateLocalStorage(array);
+  updateLocalStorage();
   window.location.reload();
-  return array;
 }
 //--------------------- List of Books Section ----------------
 const showLibrary = () => {
   if (localStorage.getItem("myLibrary") !== null) {
-    myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+    retrieveBooks();
   };
   myLibrary.forEach(book => {
-    if (book instanceof Book) {
-      book.addBookToHTML();
-    } else {
-      const newBook = new Book(book.title, book.author, book.pages, book.readStatus)
-      newBook.addBookToHTML();
-    }
+    const newBook = new Book(book.title, book.author, book.pages, book.readStatus)
+    newBook.addBookToHTML();
   });
 }
 
@@ -260,7 +242,7 @@ function toggleReadStatus(index) {
 }
 //--------------------- Edit Book Section --------------------
 document.getElementById("close-edit-form-button").addEventListener("click", closeEditForm);
-document.getElementById("edit-book-form").addEventListener("submit", editBookFormSubmit);
+// document.getElementById("edit-book-form").addEventListener("submit", editBookFormSubmit);
 
 function openEditForm(index) {
   let book = myLibrary[index];
