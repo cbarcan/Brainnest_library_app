@@ -42,6 +42,7 @@ class Book {
     const author = document.createElement("p");
     const pages = document.createElement("p");
     const readStatus = document.createElement("p");
+    const edit = document.createElement("p");
     const removal = document.createElement("p");
     book.classList.add("book-wrapper");
     title.classList.add("title");
@@ -56,15 +57,19 @@ class Book {
     } else {
       readStatus.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
     }
+    edit.classList.add("edit")
+    edit.innerHTML = `<i class="fa-regular fa-pen-to-square"></i>`;
     removal.classList.add("removal");
     removal.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
     const iReadStatus = readStatus.firstChild;
     iReadStatus.onclick = () => this.statusChange();
+    const iEdit = edit.firstChild;
+    iEdit.onclick = () => this.openEditForm();
     const iRemove = removal.firstChild;
     iRemove.onclick = () => {
       this.removeBookFromLibrary();
       this.removeBookFromHTML();
-    };
+    }; 
     book.appendChild(title);
     book.appendChild(author);
     book.appendChild(pages);
@@ -236,6 +241,9 @@ function toggleReadStatus(index) {
   updateLocalStorage();
 }
 //--------------------- Edit Book Section --------------------
+document.getElementById("close-edit-form-button").addEventListener("click", closeEditForm);
+document.getElementById("edit-book-form").addEventListener("submit", editBookFormSubmit);
+
 function openEditForm(index) {
   let book = myLibrary[index];
   document.getElementById("edit-index").value = index;
@@ -243,11 +251,11 @@ function openEditForm(index) {
   document.getElementById("edit-author").value = book.author;
   document.getElementById("edit-pages").value = book.pages;
   document.getElementById("edit-read").checked = book.readStatus;
-  document.getElementById("edit-book-form").style.display = "block";
+  document.getElementById("edit-book-wrapper").style.display = "block";
 }
 
 function closeEditForm() {
-  document.getElementById("edit-book-form").style.display = "none";
+  document.getElementById("edit-book-wrapper").style.display = "none";
 }
 
 function editBookFormSubmit(event) {

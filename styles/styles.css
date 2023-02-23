@@ -19,7 +19,6 @@
   font-weight: lighter;
 }
 
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -313,6 +312,24 @@ header.books-list-header {
   min-height: 100%;
   width: 20%;
   display: none;
+}
+
+.edit {
+  width: 18%;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+}
+
+.edit i{
+  color: var(--color-action-danger);
+  transition: all 0.5s ease-in-out;
+}
+
+.edit i:hover {
+  -ms-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
 }
 
 /* --------------------- Media Queries ------------------------ */
