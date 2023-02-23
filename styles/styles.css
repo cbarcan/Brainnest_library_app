@@ -41,8 +41,6 @@
 html,
 body,
 main {
-  min-height: 100vh;
-  height: fit-content;
   width: 100%;
   background-color: var(--color-bg);
 }
@@ -85,13 +83,11 @@ p {
 
 /* --------------------- Add Book Section --------------------- */
 .add-book-wrapper {
-  min-height: 100%;
   width: 20%;
   background-color: var(--color-bg-side);
 }
 
 .books-wrapper {
-  height: fit-content;
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -130,8 +126,6 @@ button[type="submit"] {
 
 /* --------------------- Counter Section ---------------------- */
 .counter-wrapper {
-  min-height: 20%;
-  height: fit-content;
   width: 80%;
   display: flex;
   justify-content: space-between;
@@ -183,7 +177,6 @@ button[type="submit"] {
 
 /* --------------------- List of Books Section ---------------- */
 .books-list-wrapper {
-  min-height: 80%;
   height: fit-content;
   width: 80%;
 }
@@ -309,6 +302,91 @@ header.books-list-header {
 
 /* Media Queries (Small Devices) */
 @media screen and (max-width: 600px) {
+
+  .books-list-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  header.books-list-header {
+    display: none;
+  }
+
+  .book-wrapper{
+    height: 250px;
+    width: 200px;
+    margin-bottom: 5px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 2%;
+    border: 1px solid rgba(192, 192, 192, 0.411);
+    border-radius: 10px;
+    box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.664);
+    background-color: var(--color-bg-variant);
+    -webkit-animation: slideIn 0.5s ease-in;
+    animation: slideIn 0.5s ease-in;
+  }
+
+  .book-wrapper:hover {
+    cursor: pointer;
+    background-color: var(--color-bg-side);
+    color: var(--color-bg);
+  }
+
+  .book-wrapper p {
+    align-items: center;
+    margin-right: 1%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+            line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .removed {
+    -webkit-animation: slideOut 0.5s ease;
+    animation: slideOut 0.5s ease;
+  }
+
+  .title {
+    width: 30%;
+  }
+
+  .author {
+    width: 20%;
+  }
+
+  .pages {
+    width: 12%;
+  }
+
+  .status {
+    width: 22%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .removal {
+    width: 16%;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .removal i{
+    color: var(--color-action-danger);
+    transition: all 0.5s ease-in-out;
+  }
+
+  .removal i:hover {
+    -ms-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+  }
+
   .counter-wrapper > button {
   display: none;
   }
