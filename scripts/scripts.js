@@ -131,7 +131,7 @@ function addBookToThisLibrary(event) {
     // hide the button and show the form
     toggleButton.style.display = "none";
     form.style.display = "block";
-    document.body.style.overflow = "hidden"; // disable scrolling
+    // document.body.style.overflow = "hidden"; // disable scrolling
 }
 
 
