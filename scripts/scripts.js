@@ -20,7 +20,6 @@ const retrieveBooks = () =>  {
   return myLibrary;
 };
 
-
 class Book {
 
   constructor(title, author, pages, readStatus = false) {
@@ -206,9 +205,9 @@ const showLibrary = () => {
 //--------------------- Change Read Status --------------------
 function toggleReadStatus(index) {
   myLibrary = getLocalStorage();
-  myLibrary[index].read = !myLibrary[index].read;
+  myLibrary[index].readStatus = !myLibrary[index].readStatus;
 
-  // Need a function that updates the local storage to go here.
+  updateLocalStorage();
 }
 //--------------------- Edit Book Section --------------------
 function openEditForm(index) {
@@ -217,7 +216,7 @@ function openEditForm(index) {
   document.getElementById("edit-title").value = book.title;
   document.getElementById("edit-author").value = book.author;
   document.getElementById("edit-pages").value = book.pages;
-  document.getElementById("edit-read").checked = book.read;
+  document.getElementById("edit-read").checked = book.readStatus;
   document.getElementById("edit-book-form").style.display = "block";
 }
 
@@ -231,13 +230,13 @@ function editBookFormSubmit(event) {
   let title = document.getElementById("edit-title").value;
   let author = document.getElementById("edit-author").value;
   let pages = document.getElementById("edit-pages").value;
-  let read = document.getElementById("edit-read").checked;
+  let readStatus = document.getElementById("edit-read").checked;
   myLibrary[index].title = title;
   myLibrary[index].author = author;
   myLibrary[index].pages = pages;
-  myLibrary[index].read = read;
-  // Need a function that updates the local storage to go here.
-  // Need a function that displays the books to go here.
+  myLibrary[index].readStatus = readStatus;
+  updateLocalStorage();
+  retrieveBooks();
   closeEditForm();
 }
 
