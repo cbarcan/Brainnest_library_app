@@ -231,6 +231,10 @@ header.books-list-header {
   color: var(--color-bg);
 }
 
+header p {
+  margin-right: 1%;
+}
+
 .book-wrapper{
   height: 70px;
   width: 100%;
@@ -254,8 +258,21 @@ header.books-list-header {
 }
 
 .book-wrapper p {
+  height: 100%;
+  display: flex;
   align-items: center;
   margin-right: 1%;
+  overflow: hidden;
+}
+
+.removed {
+  -webkit-animation: slideOut 0.5s ease;
+  animation: slideOut 0.5s ease;
+}
+
+p.title {
+  height: fit-content;
+  width: 30%;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -264,17 +281,14 @@ header.books-list-header {
   -webkit-box-orient: vertical;
 }
 
-.removed {
-  -webkit-animation: slideOut 0.5s ease;
-  animation: slideOut 0.5s ease;
-}
-
-.title {
-  width: 30%;
-}
-
-.author {
+p.author {
+  height: fit-content;
   width: 20%;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+          line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .pages {
@@ -282,13 +296,13 @@ header.books-list-header {
 }
 
 .status {
-  width: 22%;
+  width: 18%;
   text-align: center;
   justify-content: center;
 }
 
 .removal {
-  width: 16%;
+  width: 12%;
   text-align: center;
   justify-content: center;
   position: relative;
@@ -313,7 +327,7 @@ header.books-list-header {
 }
 
 .edit {
-  width: 18%;
+  width: 8%;
   text-align: center;
   justify-content: center;
   position: relative;
@@ -350,7 +364,7 @@ header.books-list-header {
   }
 
   p {
-    font-size: 16px;
+    font-size: 0.8rem;
   }
 
   #toggleForm {

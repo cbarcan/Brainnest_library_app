@@ -72,6 +72,7 @@ class Book {
     book.appendChild(author);
     book.appendChild(pages);
     book.appendChild(readStatus);
+    book.appendChild(edit);
     book.appendChild(removal);
     booksWrapper.appendChild(book);
     totalCount.innerText = myLibrary.length;
