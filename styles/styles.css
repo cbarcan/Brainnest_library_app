@@ -162,11 +162,11 @@ button[type="submit"] {
 
 /* --------------------- Counter Section ---------------------- */
 .counter-wrapper {
+  height: 15vh;
   width: 80%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2% 0 2% 1%;
 }
 
 .counter-mobile {
@@ -266,8 +266,8 @@ header p {
 }
 
 .removed {
-  -webkit-animation: slideOut 0.5s ease;
-  animation: slideOut 0.5s ease;
+  -webkit-animation: slideOut 0.5s ease-out;
+  animation: slideOut 0.5s ease-out;
 }
 
 p.title {
@@ -367,9 +367,9 @@ p.author {
     font-size: 0.8rem;
   }
 
-  #toggleForm {
-    /* display: block; */
-  }
+  /* #toggleForm {
+    display: block;
+  } */
 
   .counter {
     flex-direction: column;
@@ -379,9 +379,10 @@ p.author {
 /* Media Queries (Small Devices) */
 @media screen and (max-width: 600px) {
 
-  .books-list-wrapper {
+  #books-list-wrapper {
     display: flex;
     flex-wrap: wrap;
+    gap: 10px;
     justify-content: space-evenly;
   }
 
@@ -396,6 +397,7 @@ p.author {
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-evenly;
+    padding: 0 7%;
   }
 
   p.title {
@@ -413,19 +415,21 @@ p.author {
     width: 100%;
   }
 
+  .icons {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
   p.status {
     height: fit-content;
     width: 100%;
-    text-align: center;
-    justify-content: flex-end;
   }
 
   p.removal {
     height: fit-content;
     width: 100%;
-    text-align: center;
-    justify-content: center;
-    position: relative;
   }
 
   .removal i:hover {
@@ -437,9 +441,6 @@ p.author {
   p.edit {
     height: fit-content;
     width:100%;
-    text-align: center;
-    justify-content: center;
-    position: relative;
   }
 
   .edit i:hover {
@@ -470,8 +471,10 @@ p.author {
   from {
     opacity: 0;
     left: 100vw;
+    visibility: hidden;
   }
   to {
+    visibility: visible;
     opacity: 1;
     left: 0;
   }
@@ -481,8 +484,10 @@ p.author {
   from {
     opacity: 0;
     left: 100vw;
+    visibility: hidden;
   }
   to {
+    visibility: visible;
     opacity: 1;
     left: 0;
   }

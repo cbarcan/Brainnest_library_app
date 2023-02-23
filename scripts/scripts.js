@@ -2,7 +2,7 @@ let myLibrary = [];
 const booksWrapper = document.getElementById("books-list-wrapper");
 const books = document.querySelectorAll(".book-wrapper");
 
-let width = window.innerWidth;
+let width = screen.width;
 
 let counterRead = 0;
 const readCount = document.getElementById("counter-read");
@@ -74,7 +74,6 @@ class Book {
     book.appendChild(author);
     book.appendChild(pages);
     if (width < 601) {
-      console.log("test");
       const icons = document.createElement("div");
       icons.classList.add("icons");
       icons.appendChild(readStatus);
@@ -311,9 +310,9 @@ function editBookFormSubmit(event) {
   closeEditForm();
 }
 
-window.onresize = () => {
-  width = window.innerWidth;
+window.addEventListener("resize", () => {
+  width = screen.width;
   showLibrary();
-}
+})
 
 showLibrary();
