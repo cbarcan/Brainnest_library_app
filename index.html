@@ -10,6 +10,20 @@
 </head>
 <body>
   <main>
+    <div id="modal">
+      <form id="myForm" class="mobile-form">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title"><br>
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author"><br>
+        <label for="pages">Pages:</label>
+        <input type="number" id="pages" name="pages"><br>
+        <label for="read">Already read:</label>
+        <input type="checkbox" id="read" name="read"><br>
+        <button onclick="addBook(event)">Add Book</button>
+      </form>
+    </div>
+    <button id="toggleForm" onclick="toggleForm()">Show Form</button>
     <!--------------------- Add Book Section --------------------->
     <section class="add-book-wrapper">
       <h1>Library</h1>
@@ -26,7 +40,7 @@
         <label for="read">Already read:</label>
         <input type="checkbox" id="read" name="read"><br>
 
-        <button onclick="addBook(event)">Add Book</button>
+        <button class="button" onclick="addBook(event)">Add Book</button>
       </form>
     </section>
     <!--------------------- Edit Book Section --------------------->
@@ -62,17 +76,17 @@
         </ul>
         <ul class="counter-mobile">
           <li>
-            read: <span id="counter-read">0</span>
+            read: <span id="counter-read-mobile">0</span>
           </li>
           <li>
-            unread: <span id="counter-unread">0</span>
+            unread: <span id="counter-unread-mobile">0</span>
           </li>
           <li>
-            Total: <span id="counter-total">0</span>
+            Total: <span id="counter-total-mobile">0</span>
           </li>
         </ul>
         <button onclick="deleteAll()" id="delete-all">Delete All</button>
-        <i class="fa-solid fa-circle-minus"></i>
+        <i onclick="deleteAll()" class="fa-solid fa-circle-minus"></i>
       </section>
       <!--------------------- List of Books Section --------------------->
       <section class="books-list-wrapper" id="books-list-wrapper">
@@ -81,6 +95,8 @@
           <p class="author">AUTHOR <i onclick="sortByAuthor()" class="fa-sharp fa-solid fa-chevron-down"></i></p>
           <p class="pages">PAGES</p>
           <p class="status">STATUS<br>read / not read</p>
+          <!-- We can make the edit and removal into actions instead -->
+          <p class="edit">EDIT</p>
           <p class="removal">REMOVAL</p>
         </header>
       </section>

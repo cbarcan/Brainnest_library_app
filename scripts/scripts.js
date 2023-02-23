@@ -6,8 +6,14 @@ let counterRead = 0;
 const readCount = document.getElementById("counter-read");
 const unreadCount = document.getElementById("counter-unread");
 const totalCount = document.getElementById("counter-total");
+const readCountMobile = document.getElementById("counter-read-mobile");
+const unreadCountMobile = document.getElementById("counter-unread-mobile");
+const totalCountMobile = document.getElementById("counter-total-mobile");
 
-const updateLocalStorage = (array) =>{ 
+const modal = document.getElementById("modal");
+const toggleButton = document.getElementById("toggleForm");
+
+const updateLocalStorage = (array) =>{
   localStorage.setItem("myLibrary", JSON.stringify(array));
   return array;
 }
@@ -16,7 +22,6 @@ const retrieveBooks = () =>  {
   myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
   return myLibrary;
 };
-
 
 class Book {
 
@@ -37,6 +42,7 @@ class Book {
     const author = document.createElement("p");
     const pages = document.createElement("p");
     const readStatus = document.createElement("p");
+    const edit = document.createElement("p");
     const removal = document.createElement("p");
     book.classList.add("book-wrapper");
     title.classList.add("title");
@@ -51,10 +57,14 @@ class Book {
     } else {
       readStatus.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
     }
+    edit.classList.add("edit")
+    edit.innerHTML = `<i class="fa-regular fa-pen-to-square"></i>`;
     removal.classList.add("removal");
     removal.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
     const iReadStatus = readStatus.firstChild;
     iReadStatus.onclick = () => this.statusChange();
+    const iEdit = edit.firstChild;
+    iEdit.onclick = () => this.openEditForm();
     const iRemove = removal.firstChild;
     iRemove.onclick = () => {
       this.removeBookFromLibrary();
@@ -67,6 +77,8 @@ class Book {
     book.appendChild(removal);
     booksWrapper.appendChild(book);
     totalCount.innerText = myLibrary.length;
+    totalCountMobile.innerText = myLibrary.length;
+    console.log(this.readStatus);
     if (this.readStatus === true) {
       readCounter();
     }
@@ -136,17 +148,43 @@ function addBook(event) {
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
   // Reset the form
   document.getElementById("myForm").reset();
+  modal.style.display = "none";
+  toggleButton.style.display = "block";
+}
+
+function toggleForm() {
+  // if (window.innerWidth < 480) {
+  //   // hide the button and show the form
+  //   toggleButton.style.display = "block";
+  //   form.style.display = "none";
+  //   // document.body.style.overflow = "hidden"; // disable scrolling
+  // }
+  // hide the button and show the form
+  toggleButton.style.display = "none";
+  modal.style.display = "flex";
+  // document.body.style.overflow = "hidden"; // disable scrolling
+}
+
+window.onresize = () => {
+  if (window.innerWidth > 1024) {
+    toggleButton.style.display = "none";
+  } else {
+    toggleButton.style.display = "block";
+  }
 }
 
 //--------------------- Counter Section ----------------------
 const readCounter = () => {
   counterRead++;
   readCount.innerHTML = counterRead;
+  readCountMobile.innerHTML = counterRead;
+  console.log(readCount);
 }
 
 const unreadCounter = () => {
   let counterUnread = myLibrary.length - counterRead;
   unreadCount.innerText = counterUnread;
+  unreadCountMobile.innerText = counterUnread;
 }
 
 const deleteAll = () => {
@@ -154,8 +192,11 @@ const deleteAll = () => {
   counterRead = 0;
   let unread = 0;
   readCount.innerText = counterRead;
+  readCountMobile.innerText = counterRead;
   unreadCount.innerText = unread;
+  unreadCountMobile.innerText = unread;
   totalCount.innerText = myLibrary.length;
+  totalCountMobile.innerText = myLibrary.length;
   updateLocalStorage(myLibrary);
   window.location.reload();
 }
@@ -215,9 +256,12 @@ function toggleReadStatus(index) {
   myLibrary = getLocalStorage();
   myLibrary[index].readStatus = !myLibrary[index].readStatus;
 
-  // Need a function that updates the local storage to go here.
+  updateLocalStorage();
 }
 //--------------------- Edit Book Section --------------------
+document.getElementById("close-edit-form-button").addEventListener("click", closeEditForm);
+document.getElementById("edit-book-form").addEventListener("submit", editBookFormSubmit);
+
 function openEditForm(index) {
   let book = myLibrary[index];
   document.getElementById("edit-index").value = index;
@@ -225,11 +269,11 @@ function openEditForm(index) {
   document.getElementById("edit-author").value = book.author;
   document.getElementById("edit-pages").value = book.pages;
   document.getElementById("edit-read").checked = book.readStatus;
-  document.getElementById("edit-book-form").style.display = "block";
+  document.getElementById("edit-book-wrapper").style.display = "block";
 }
 
 function closeEditForm() {
-  document.getElementById("edit-book-form").style.display = "none";
+  document.getElementById("edit-book-wrapper").style.display = "none";
 }
 
 function editBookFormSubmit(event) {
@@ -238,13 +282,13 @@ function editBookFormSubmit(event) {
   let title = document.getElementById("edit-title").value;
   let author = document.getElementById("edit-author").value;
   let pages = document.getElementById("edit-pages").value;
-  let read = document.getElementById("edit-read").checked;
+  let readStatus = document.getElementById("edit-read").checked;
   myLibrary[index].title = title;
   myLibrary[index].author = author;
   myLibrary[index].pages = pages;
-  myLibrary[index].readStatus = read;
-  // Need a function that updates the local storage to go here.
-  // Need a function that displays the books to go here.
+  myLibrary[index].readStatus = readStatus;
+  updateLocalStorage();
+  retrieveBooks();
   closeEditForm();
 }
 
