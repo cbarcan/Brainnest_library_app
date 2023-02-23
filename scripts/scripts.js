@@ -56,7 +56,6 @@ class Book {
     book.appendChild(removal);
     booksWrapper.appendChild(book);
     totalCount.innerText = myLibrary.length;
-    console.log(this.readStatus);
     if (this.readStatus === true) {
       readCounter();
     }
@@ -85,11 +84,25 @@ class Book {
   }
 
   statusChange() {
+    this.readStatus = !this.readStatus;
+    const title = Array.from(document.querySelectorAll('.title')).find(el => el.textContent === this.title);
+    const book = title.parentElement;
     if (this.readStatus === true) {
-      this.readStatus = false;
+      book.childNodes[3].innerHTML = `<i class="fa-solid fa-check"></i>`;
     } else {
-      this.readStatus = true;
+      book.childNodes[3].innerHTML = `<i class="fa-solid fa-xmark"></i>`;
     }
+    book.childNodes[3].firstChild.onclick = () => this.statusChange();
+    const index = myLibrary.indexOf(myLibrary.find(book => book.title === this.title));
+    myLibrary[index].readStatus = this.readStatus;
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+    if (this.readStatus !== true) {
+      counterRead--;
+      readCount.innerText = counterRead;
+    } else {
+      readCounter();
+    }
+    unreadCounter();
   }
 }
 
@@ -118,7 +131,6 @@ function addBook(event) {
 const readCounter = () => {
   counterRead++;
   readCount.innerHTML = counterRead;
-  console.log(readCount);
 }
 
 const unreadCounter = () => {
@@ -142,8 +154,12 @@ const showLibrary = () => {
     myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
   };
   myLibrary.forEach(book => {
-    const newBook = new Book(book.title, book.author, book.pages, book.readStatus)
-    newBook.addBookToHTML();
+    if (book instanceof Book) {
+      book.addBookToHTML();
+    } else {
+      const newBook = new Book(book.title, book.author, book.pages, book.readStatus)
+      newBook.addBookToHTML();
+    }
   });
 }
 
