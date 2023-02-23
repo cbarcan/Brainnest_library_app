@@ -13,64 +13,21 @@
     <!--------------------- Add Book Section --------------------->
     <section class="add-book-wrapper">
       <h1>Library</h1>
-      
-        <form id="myForm">
-          <label for="title">Title:</label>
-          <input type="text" id="title" name="title"><br>
-        
-          <label for="author">Author:</label>
-          <input type="text" id="author" name="author"><br>
-        
-          <label for="pages">Pages:</label>
-          <input type="number" id="pages" name="pages"><br>
-        
-          <label for="read">Already read:</label>
-          <input type="checkbox" id="read" name="read"><br>
-        
-          <button onclick="addBookToThisLibrary(event)">Add Book</button>
-        </form>
-        <button id="toggleForm" onclick="toggleForm()">Show Form</button>
-      
-    </section>
-    <!--------------------- Books Section --------------------->
-    <section class="books-wrapper">
-      <!--------------------- Counter Section --------------------->
-      <section class="counter-wrapper">
-        <ul class="counter">
-          <li>
-            Books read: <span id="read">0</span>
-          </li>
-          <li>
-            Books unread: <span id="unread">0</span>
-          </li>
-          <li>
-            Total books: <span id="total">0</span>
-          </li>
-        </ul>
-        <ul class="counter-mobile">
-          <li>
-            read: <span id="read">0</span>
-          </li>
-          <li>
-            unread: <span id="unread">0</span>
-          </li>
-          <li>
-            Total: <span id="total">0</span>
-          </li>
-        </ul>
-        <button>Delete All</button>
-        <i class="fa-solid fa-circle-minus"></i>
-      </section>
-      <!--------------------- List of Books Section --------------------->
-      <section class="books-list-wrapper" id="books">
-        <header class="books-list-header">
-          <p class="title">TITLE</p>
-          <p class="author">AUTHOR</p>
-          <p class="pages">PAGES</p>
-          <p class="status">STATUS<br>read / not read</p>
-          <p class="removal">REMOVAL</p>
-        </header>
-      </section>
+      <form id="myForm">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title"><br>
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author"><br>
+
+        <label for="pages">Pages:</label>
+        <input type="number" id="pages" name="pages"><br>
+
+        <label for="read">Already read:</label>
+        <input type="checkbox" id="read" name="read"><br>
+
+        <button class="button" onclick="addBook(event)">Add Book</button>
+      </form>
     </section>
     <!--------------------- Edit Book Section --------------------->
     <section id="edit-book-wrapper">
@@ -87,6 +44,46 @@
         <input type="submit" value="Save Changes" class="button">
         <button id="close-edit-form-button" type="button" class="button" onclick="closeEditForm()">Cancel</button>
       </form>
+    </section>
+    <!--------------------- Books Section --------------------->
+    <section class="books-wrapper">
+      <!--------------------- Counter Section --------------------->
+      <section class="counter-wrapper">
+        <ul class="counter">
+          <li>
+            Books read: <span id="counter-read">0</span>
+          </li>
+          <li>
+            Books unread: <span id="counter-unread">0</span>
+          </li>
+          <li>
+            Total books: <span id="counter-total">0</span>
+          </li>
+        </ul>
+        <ul class="counter-mobile">
+          <li>
+            read: <span id="counter-read-mobile">0</span>
+          </li>
+          <li>
+            unread: <span id="counter-unread-mobile">0</span>
+          </li>
+          <li>
+            Total: <span id="counter-total-mobile">0</span>
+          </li>
+        </ul>
+        <button onclick="deleteAll()" id="delete-all">Delete All</button>
+        <i onclick="deleteAll()" class="fa-solid fa-circle-minus"></i>
+      </section>
+      <!--------------------- List of Books Section --------------------->
+      <section class="books-list-wrapper" id="books-list-wrapper">
+        <header class="books-list-header">
+          <p class="title">TITLE <i onclick="sortByTitle()" class="fa-sharp fa-solid fa-chevron-down"></i></p>
+          <p class="author">AUTHOR <i onclick="sortByAuthor()" class="fa-sharp fa-solid fa-chevron-down"></i></p>
+          <p class="pages">PAGES</p>
+          <p class="status">STATUS<br>read / not read</p>
+          <p class="removal">REMOVAL</p>
+        </header>
+      </section>
     </section>
   </main>
   <script src="./scripts/scripts.js"></script>
