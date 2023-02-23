@@ -128,6 +128,18 @@ function addBook(event) {
   document.getElementById("myForm").reset();
 }
 
+  const form = document.getElementById("myForm");
+  const toggleButton = document.getElementById("toggleForm");
+  const addBookButton = document.getElementById("addBookButton");  
+
+  function toggleForm() {
+  
+    // hide the button and show the form
+    toggleButton.style.display = "none";
+    form.style.display = "block";
+    // document.body.style.overflow = "hidden"; // disable scrolling
+  }
+
 //--------------------- Counter Section ----------------------
 const readCounter = () => {
   counterRead++;
