@@ -125,7 +125,9 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-
+#toggleForm {
+  display: none;
+}
 
 
 /* --------------------- Counter Section ---------------------- */
@@ -301,15 +303,25 @@ header.books-list-header {
 }
 
 @media screen and (max-width: 480px) {
-  form {
-    max-width: none;
-    padding: 10px;
+  
+  .add-book-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
-  input[type="text"],
-  button[type="submit"] {
-    width: 100%;
+  
+  #myForm {
+    display: none;
+    width: 100 vw;
+    height: 100 vh;
+  }
+
+  #toggleForm {
+    display: block;
   }
 }
+
 
 /* --------------------- Animations ------------------------ */
 @-webkit-keyframes slideIn {

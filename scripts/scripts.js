@@ -98,7 +98,7 @@ function addBookToThisLibrary(event) {
   if (localStorage.getItem("myLibrary") === null) {
       var myLibrary = [];
   } else {
-      var myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+      let myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
   }
 
   myLibrary.push(book);
@@ -106,9 +106,37 @@ function addBookToThisLibrary(event) {
 
   console.log(myLibrary);
 
+  const form = document.getElementById("myForm");
+  const toggleButton = document.getElementById("toggleForm");
+  const addBookButton = document.getElementById("addBookButton");
+  
+  if (window.innerWidth < 480) {
+        // hide the button and show the form
+        toggleButton.style.display = "block";
+        form.style.display = "none";
+        // document.body.style.overflow = "hidden"; // disable scrolling
+      } 
+
+
   // Reset the form
   document.getElementById("myForm").reset();
-  }
+}
+
+  const form = document.getElementById("myForm");
+  const toggleButton = document.getElementById("toggleForm");
+  const addBookButton = document.getElementById("addBookButton");  
+
+  function toggleForm() {
+  
+    // hide the button and show the form
+    toggleButton.style.display = "none";
+    form.style.display = "block";
+    document.body.style.overflow = "hidden"; // disable scrolling
+}
+
+
+
+
 
 //--------------------- Add Book Section ---------------------
 
