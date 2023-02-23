@@ -7,6 +7,17 @@ const readCount = document.getElementById("counter-read");
 const unreadCount = document.getElementById("counter-unread");
 const totalCount = document.getElementById("counter-total");
 
+const updateLocalStorage = (array) =>{ 
+  localStorage.setItem("myLibrary", JSON.stringify(array));
+  return array;
+}
+
+const retrieveBooks = () =>  {
+  myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+  return myLibrary;
+};
+
+
 class Book {
 
   constructor(title, author, pages, readStatus = false) {
@@ -145,9 +156,45 @@ const deleteAll = () => {
   readCount.innerText = counterRead;
   unreadCount.innerText = unread;
   totalCount.innerText = myLibrary.length;
-  return myLibrary;
+  updateLocalStorage(myLibrary);
+  window.location.reload();
 }
 
+const sortByTitle = (array) => {
+  array = retrieveBooks();
+  array.sort((a, b) => {
+    let titleA =  a.title.toLowerCase();
+    let titleB = b.title.toLowerCase();
+
+    if (titleA < titleB) {
+      return -1
+    } if (titleA > titleB) {
+      return 1;
+    }
+    return 0;
+  })
+  updateLocalStorage(array);
+  window.location.reload();
+  return array;
+}
+
+const sortByAuthor = (array) => {
+  array = retrieveBooks();
+  array.sort((a, b) => {
+  let authorA =  a.author.toLowerCase();
+    let authorB = b.author.toLowerCase();
+
+    if (authorA < authorB) {
+      return -1
+    } if (authorA > authorB) {
+      return 1;
+    }
+    return 0;
+  })
+  updateLocalStorage(array);
+  window.location.reload();
+  return array;
+}
 //--------------------- List of Books Section ----------------
 const showLibrary = () => {
   if (localStorage.getItem("myLibrary") !== null) {

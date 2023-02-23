@@ -134,9 +134,9 @@ button[type="submit"] {
   height: fit-content;
   width: 80%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  padding: 2%;
+  padding: 2% 0 2% 1%;
 }
 
 .counter-mobile {
@@ -167,6 +167,14 @@ button[type="submit"] {
   font-size: 1rem;
   border: none;
   border-radius: 10px;
+  border: 2px solid transparent;
+  box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.664);
+}
+.counter-wrapper>button:hover {
+  background-color: var(--color-bg-variant);
+  color: var(--color-action-danger);
+  font-weight: bold;
+  border: 2px solid var(--color-action-danger)
 }
 
 .counter-wrapper>i {
