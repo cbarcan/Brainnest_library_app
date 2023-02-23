@@ -71,14 +71,14 @@
             Total: <span id="counter-total">0</span>
           </li>
         </ul>
-        <button>Delete All</button>
+        <button onclick="deleteAll()" id="delete-all">Delete All</button>
         <i class="fa-solid fa-circle-minus"></i>
       </section>
       <!--------------------- List of Books Section --------------------->
       <section class="books-list-wrapper" id="books-list-wrapper">
         <header class="books-list-header">
-          <p class="title">TITLE</p>
-          <p class="author">AUTHOR</p>
+          <p class="title">TITLE <i onclick="sortByTitle()" class="fa-sharp fa-solid fa-chevron-down"></i></p>
+          <p class="author">AUTHOR <i onclick="sortByAuthor()" class="fa-sharp fa-solid fa-chevron-down"></i></p>
           <p class="pages">PAGES</p>
           <p class="status">STATUS<br>read / not read</p>
           <p class="removal">REMOVAL</p>
