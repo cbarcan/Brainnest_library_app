@@ -221,7 +221,7 @@ const deleteAll = () => {
   totalCount.innerText = myLibrary.length;
   totalCountMobile.innerText = myLibrary.length;
   updateLocalStorage();
-  window.location.reload();
+  showLibrary();
 }
 
 const sortByTitle = () => {
@@ -238,7 +238,7 @@ const sortByTitle = () => {
     return 0;
   })
   updateLocalStorage();
-  window.location.reload();
+  showLibrary();
 }
 
 const sortByAuthor = () => {
@@ -255,11 +255,12 @@ const sortByAuthor = () => {
     return 0;
   })
   updateLocalStorage();
-  window.location.reload();
+  showLibrary();
 }
 //--------------------- List of Books Section ----------------
 const showLibrary = () => {
   booksWrapper.innerHTML = "";
+  counterRead = 0;
   if (localStorage.getItem("myLibrary") !== null) {
     retrieveBooks();
   };
