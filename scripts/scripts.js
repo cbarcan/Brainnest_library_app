@@ -6,6 +6,9 @@ let counterRead = 0;
 const readCount = document.getElementById("counter-read");
 const unreadCount = document.getElementById("counter-unread");
 const totalCount = document.getElementById("counter-total");
+const readCountMobile = document.getElementById("counter-read-mobile");
+const unreadCountMobile = document.getElementById("counter-unread-mobile");
+const totalCountMobile = document.getElementById("counter-total-mobile");
 
 const updateLocalStorage = (array) =>{ 
   localStorage.setItem("myLibrary", JSON.stringify(array));
@@ -67,6 +70,7 @@ class Book {
     book.appendChild(removal);
     booksWrapper.appendChild(book);
     totalCount.innerText = myLibrary.length;
+    totalCountMobile.innerText = myLibrary.length;
     console.log(this.readStatus);
     if (this.readStatus === true) {
       readCounter();
@@ -129,12 +133,14 @@ function addBook(event) {
 const readCounter = () => {
   counterRead++;
   readCount.innerHTML = counterRead;
+  readCountMobile.innerHTML = counterRead;
   console.log(readCount);
 }
 
 const unreadCounter = () => {
   let counterUnread = myLibrary.length - counterRead;
   unreadCount.innerText = counterUnread;
+  unreadCountMobile.innerText = counterUnread;
 }
 
 const deleteAll = () => {
@@ -142,8 +148,11 @@ const deleteAll = () => {
   counterRead = 0;
   let unread = 0;
   readCount.innerText = counterRead;
+  readCountMobile.innerText = counterRead;
   unreadCount.innerText = unread;
+  unreadCountMobile.innerText = unread;
   totalCount.innerText = myLibrary.length;
+  totalCountMobile.innerText = myLibrary.length;
   updateLocalStorage(myLibrary);
   window.location.reload();
 }
