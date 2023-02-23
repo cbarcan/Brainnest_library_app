@@ -147,8 +147,30 @@ function addBook(event) {
   updateLocalStorage();
   // Reset the form
   document.getElementById("myForm").reset();
+}
+
+function addBookModal(event) {
+  if (event !== undefined) {
+      event.preventDefault();
+  }
+  const title = document.getElementById("modal-title").value;
+  const author = document.getElementById("modal-author").value;
+  const pages = parseInt(document.getElementById("modal-pages").value);
+  const read = document.getElementById("modal-read").checked;
+  if (pages < 0) {
+    alert("Please enter a valid number of pages.");
+    return;
+  }
+  const book = new Book(title, author, pages, read);
+  book.addBookToLibrary();
+  book.addBookToHTML();
+  updateLocalStorage();
+  // Reset the form
+  document.getElementById("modal-myForm").reset();
   modal.style.display = "none";
 }
+
+
 
 function toggleForm() {
   // if (window.innerWidth < 480) {
