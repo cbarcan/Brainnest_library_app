@@ -40,8 +40,6 @@
 html,
 body,
 main {
-  min-height: 100vh;
-  height: fit-content;
   width: 100%;
   background-color: var(--color-bg);
 }
@@ -52,7 +50,6 @@ body {
 }
 
 main {
-  max-width: 2048px;
   display: flex;
 }
 
@@ -101,13 +98,12 @@ p {
 
 /* --------------------- Add Book Section --------------------- */
 .add-book-wrapper {
-  min-height: 100%;
   width: 20%;
   background-color: var(--color-bg-side);
 }
 
 .books-wrapper {
-  height: fit-content;
+  min-height: 100vh;
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -166,13 +162,11 @@ button[type="submit"] {
 
 /* --------------------- Counter Section ---------------------- */
 .counter-wrapper {
-  min-height: 20%;
-  height: fit-content;
+  height: 15vh;
   width: 80%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2% 0 2% 1%;
 }
 
 .counter-mobile {
@@ -219,7 +213,6 @@ button[type="submit"] {
 
 /* --------------------- List of Books Section ---------------- */
 .books-list-wrapper {
-  min-height: 80%;
   height: fit-content;
   width: 80%;
 }
@@ -236,6 +229,10 @@ header.books-list-header {
   box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.664);
   background-color: var(--color-bg-darker);
   color: var(--color-bg);
+}
+
+header p {
+  margin-right: 1%;
 }
 
 .book-wrapper{
@@ -264,33 +261,48 @@ header.books-list-header {
   height: 100%;
   display: flex;
   align-items: center;
+  margin-right: 1%;
+  overflow: hidden;
 }
 
 .removed {
-  -webkit-animation: slideOut 0.5s ease;
-  animation: slideOut 0.5s ease;
+  -webkit-animation: slideOut 0.5s ease-out;
+  animation: slideOut 0.5s ease-out;
 }
 
-.title {
+p.title {
+  height: fit-content;
   width: 30%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+          line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
-.author {
+p.author {
+  height: fit-content;
   width: 20%;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+          line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .pages {
-  width: 10%;
+  width: 12%;
 }
 
 .status {
-  width: 22%;
+  width: 18%;
   text-align: center;
   justify-content: center;
 }
 
 .removal {
-  width: 18%;
+  width: 12%;
   text-align: center;
   justify-content: center;
   position: relative;
@@ -315,7 +327,7 @@ header.books-list-header {
 }
 
 .edit {
-  width: 18%;
+  width: 8%;
   text-align: center;
   justify-content: center;
   position: relative;
@@ -336,7 +348,9 @@ header.books-list-header {
 
 /* Media Queries (XXL Devices) */
 @media screen and (min-width: 2048px) {
-
+  main {
+    width: 80%;
+  }
 }
 
 /* Media Queries (Medium Devices) */
@@ -345,9 +359,17 @@ header.books-list-header {
     display: none;
   }
 
-  #toggleForm {
-    display: block;
+  .books-wrapper {
+    width: 100%;
   }
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  /* #toggleForm {
+    display: block;
+  } */
 
   .counter {
     flex-direction: column;
@@ -356,6 +378,76 @@ header.books-list-header {
 
 /* Media Queries (Small Devices) */
 @media screen and (max-width: 600px) {
+
+  #books-list-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-evenly;
+  }
+
+  header.books-list-header {
+    display: none;
+  }
+
+  .book-wrapper{
+    height: 250px;
+    width: 200px;
+    margin-bottom: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding: 0 7%;
+  }
+
+  p.title {
+    height: fit-content;
+    width: 100%;
+  }
+
+  p.author {
+    height: fit-content;
+    width: 100%;
+  }
+
+  p.pages {
+    height: fit-content;
+    width: 100%;
+  }
+
+  .icons {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  p.status {
+    height: fit-content;
+    width: 100%;
+  }
+
+  p.removal {
+    height: fit-content;
+    width: 100%;
+  }
+
+  .removal i:hover {
+    -ms-transform: none;
+    -webkit-transform: none;
+    transform: none;
+  }
+
+  p.edit {
+    height: fit-content;
+    width:100%;
+  }
+
+  .edit i:hover {
+    -ms-transform: none;
+    -webkit-transform: none;
+    transform: none;
+  }
 
   .counter-wrapper > button {
   display: none;
@@ -374,27 +466,15 @@ header.books-list-header {
   }
 }
 
-@media screen and (max-width: 480px) {
-
-  #myForm {
-    display: none;
-    width: 100 vw;
-    height: 100 vh;
-  }
-/*
-  #toggleForm {
-    display: block;
-  } */
-}
-
-
 /* --------------------- Animations ------------------------ */
 @-webkit-keyframes slideIn {
   from {
     opacity: 0;
     left: 100vw;
+    visibility: hidden;
   }
   to {
+    visibility: visible;
     opacity: 1;
     left: 0;
   }
@@ -404,8 +484,10 @@ header.books-list-header {
   from {
     opacity: 0;
     left: 100vw;
+    visibility: hidden;
   }
   to {
+    visibility: visible;
     opacity: 1;
     left: 0;
   }

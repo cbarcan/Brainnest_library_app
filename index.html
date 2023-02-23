@@ -11,16 +11,16 @@
 <body>
   <main>
     <div id="modal">
-      <form id="myForm" class="mobile-form">
+      <form id="modal-myForm" class="mobile-form">
         <label for="title">Title:</label>
-        <input type="text" id="title" name="title"><br>
+        <input type="text" id="modal-title" name="title"><br>
         <label for="author">Author:</label>
-        <input type="text" id="author" name="author"><br>
+        <input type="text" id="modal-author" name="author"><br>
         <label for="pages">Pages:</label>
-        <input type="number" id="pages" name="pages"><br>
+        <input type="number" id="modal-pages" name="pages"><br>
         <label for="read">Already read:</label>
-        <input type="checkbox" id="read" name="read"><br>
-        <button onclick="addBook(event)">Add Book</button>
+        <input type="checkbox" id="modal-read" name="read"><br>
+        <button onclick="addBookModal(event)">Add Book</button>
       </form>
     </div>
     <button id="toggleForm" onclick="toggleForm()">Show Form</button>
@@ -89,7 +89,7 @@
         <i onclick="deleteAll()" class="fa-solid fa-circle-minus"></i>
       </section>
       <!--------------------- List of Books Section --------------------->
-      <section class="books-list-wrapper" id="books-list-wrapper">
+      <section class="books-list-wrapper">
         <header class="books-list-header">
           <p class="title">TITLE <i onclick="sortByTitle()" class="fa-sharp fa-solid fa-chevron-down"></i></p>
           <p class="author">AUTHOR <i onclick="sortByAuthor()" class="fa-sharp fa-solid fa-chevron-down"></i></p>
@@ -99,6 +99,7 @@
           <p class="edit">EDIT</p>
           <p class="removal">REMOVAL</p>
         </header>
+        <div id="books-list-wrapper"></div>
       </section>
     </section>
   </main>
