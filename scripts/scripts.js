@@ -106,16 +106,16 @@ function addBookToThisLibrary(event) {
 
   console.log(myLibrary);
 
-  const form = document.getElementById("myForm");
-  const toggleButton = document.getElementById("toggleForm");
-  const addBookButton = document.getElementById("addBookButton");
+  // const form = document.getElementById("myForm");
+  // const toggleButton = document.getElementById("toggleForm");
+  // const addBookButton = document.getElementById("addBookButton");
   
-  if (window.innerWidth < 480) {
-        // hide the button and show the form
-        toggleButton.style.display = "block";
-        form.style.display = "none";
-        // document.body.style.overflow = "hidden"; // disable scrolling
-      } 
+  // if (window.innerWidth < 480) {
+  //       // hide the button and show the form
+  //       toggleButton.style.display = "block";
+  //       form.style.display = "none";
+  //       // document.body.style.overflow = "hidden"; // disable scrolling
+  //     } 
 
 
   // Reset the form
