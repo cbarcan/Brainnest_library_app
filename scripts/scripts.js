@@ -10,7 +10,10 @@ const readCountMobile = document.getElementById("counter-read-mobile");
 const unreadCountMobile = document.getElementById("counter-unread-mobile");
 const totalCountMobile = document.getElementById("counter-total-mobile");
 
-const updateLocalStorage = (array) =>{ 
+const modal = document.getElementById("modal");
+const toggleButton = document.getElementById("toggleForm");
+
+const updateLocalStorage = (array) =>{
   localStorage.setItem("myLibrary", JSON.stringify(array));
   return array;
 }
@@ -120,79 +123,36 @@ function addBook(event) {
     alert("Please enter a valid number of pages.");
     return;
   }
-// <<<<<<< HEAD
-// <<<<<<< HEAD
-
-  // const book = {
-  //     title: title,
-  //     author: author,
-  //     pages: pages,
-  //     read: read
-  // };
-
-  if (localStorage.getItem("myLibrary") === null) {
-      var myLibrary = [];
-  } else {
-      let myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
-  }
-
-  myLibrary.push(book);
+  const book = new Book(title, author, pages, read);
+  book.addBookToLibrary();
+  book.addBookToHTML();
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+  // Reset the form
+  document.getElementById("myForm").reset();
+  modal.style.display = "none";
+  toggleButton.style.display = "block";
+}
 
-  console.log(myLibrary);
-
-  // const form = document.getElementById("myForm");
-  // const toggleButton = document.getElementById("toggleForm");
-  // const addBookButton = document.getElementById("addBookButton");
-  
+function toggleForm() {
   // if (window.innerWidth < 480) {
-  //       // hide the button and show the form
-  //       toggleButton.style.display = "block";
-  //       form.style.display = "none";
-  //       // document.body.style.overflow = "hidden"; // disable scrolling
-  //     } 
-
-
-// =======
-  const book = new Book(title, author, pages, read);
-  book.addBookToLibrary();
-  book.addBookToHTML();
-  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-// >>>>>>> 40bdca5db089e49de114408d81b6389112f7f8f8
-  // Reset the form
-  document.getElementById("myForm").reset();
+  //   // hide the button and show the form
+  //   toggleButton.style.display = "block";
+  //   form.style.display = "none";
+  //   // document.body.style.overflow = "hidden"; // disable scrolling
+  // }
+  // hide the button and show the form
+  toggleButton.style.display = "none";
+  modal.style.display = "flex";
+  // document.body.style.overflow = "hidden"; // disable scrolling
 }
 
-  const form = document.getElementById("myForm");
-  const toggleButton = document.getElementById("toggleForm");
-  const addBookButton = document.getElementById("addBookButton");  
-
-  function toggleForm() {
-  
-    // hide the button and show the form
+window.onresize = () => {
+  if (window.innerWidth > 1024) {
     toggleButton.style.display = "none";
-    form.style.display = "block";
-    // document.body.style.overflow = "hidden"; // disable scrolling
-// <<<<<<< HEAD
+  } else {
+    toggleButton.style.display = "block";
+  }
 }
-
-
-
-
-
-//--------------------- Add Book Section ---------------------
-// =======
-  const book = new Book(title, author, pages, read);
-  book.addBookToLibrary();
-  book.addBookToHTML();
-  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-  // Reset the form
-  document.getElementById("myForm").reset();
-
-// >>>>>>> master
-// =======
-//   }
-// >>>>>>> 40bdca5db089e49de114408d81b6389112f7f8f8
 
 //--------------------- Counter Section ----------------------
 const readCounter = () => {

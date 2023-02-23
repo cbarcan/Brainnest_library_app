@@ -133,10 +133,6 @@ label {
 }
 input[type="text"],
 input[type="number"],
-/* <<<<<<< HEAD
-<<<<<<< HEAD */
-/* ======= */
-/* >>>>>>> 40bdca5db089e49de114408d81b6389112f7f8f8 */
 button[type="submit"] {
   display: block;
   width: 90%;
@@ -150,12 +146,25 @@ button[type="submit"] {
   display: none;
 }
 
-/* <<<<<<< HEAD
-=======
->>>>>>> master
+#modal{
+  height: 100vh;
+  background-color: #000000b6;
+  width: 100%;
+  display: none;
+  position: fixed;
+  /* display: flex; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+}
 
-=======
->>>>>>> 40bdca5db089e49de114408d81b6389112f7f8f8 */
+.mobile-form {
+  height: 80%;
+  width: 80%;
+  background-color: var(--color-bg-side);
+}
+
 /* --------------------- Counter Section ---------------------- */
 .counter-wrapper {
   min-height: 20%;
@@ -303,7 +312,7 @@ header.books-list-header {
 #edit-book-wrapper {
   min-height: 100%;
   width: 20%;
-  /* display: none; */
+  display: none;
 }
 
 /* --------------------- Media Queries ------------------------ */
@@ -315,6 +324,14 @@ header.books-list-header {
 
 /* Media Queries (Medium Devices) */
 @media screen and (max-width: 1024px) {
+  .add-book-wrapper {
+    display: none;
+  }
+
+  #toggleForm {
+    display: block;
+  }
+
   .counter {
     flex-direction: column;
   }
@@ -322,6 +339,7 @@ header.books-list-header {
 
 /* Media Queries (Small Devices) */
 @media screen and (max-width: 600px) {
+
   .counter-wrapper > button {
   display: none;
   }
@@ -340,23 +358,16 @@ header.books-list-header {
 }
 
 @media screen and (max-width: 480px) {
-  
-  .add-book-wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
+
   #myForm {
     display: none;
     width: 100 vw;
     height: 100 vh;
   }
-
+/*
   #toggleForm {
     display: block;
-  }
+  } */
 }
 
 
