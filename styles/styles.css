@@ -133,7 +133,10 @@ label {
 }
 input[type="text"],
 input[type="number"],
-<<<<<<< HEAD
+/* <<<<<<< HEAD
+<<<<<<< HEAD */
+/* ======= */
+/* >>>>>>> 40bdca5db089e49de114408d81b6389112f7f8f8 */
 button[type="submit"] {
   display: block;
   width: 90%;
@@ -147,9 +150,12 @@ button[type="submit"] {
   display: none;
 }
 
+/* <<<<<<< HEAD
 =======
 >>>>>>> master
 
+=======
+>>>>>>> 40bdca5db089e49de114408d81b6389112f7f8f8 */
 /* --------------------- Counter Section ---------------------- */
 .counter-wrapper {
   min-height: 20%;

@@ -120,14 +120,15 @@ function addBook(event) {
     alert("Please enter a valid number of pages.");
     return;
   }
-<<<<<<< HEAD
+// <<<<<<< HEAD
+// <<<<<<< HEAD
 
-  const book = {
-      title: title,
-      author: author,
-      pages: pages,
-      read: read
-  };
+  // const book = {
+  //     title: title,
+  //     author: author,
+  //     pages: pages,
+  //     read: read
+  // };
 
   if (localStorage.getItem("myLibrary") === null) {
       var myLibrary = [];
@@ -152,6 +153,12 @@ function addBook(event) {
   //     } 
 
 
+// =======
+  const book = new Book(title, author, pages, read);
+  book.addBookToLibrary();
+  book.addBookToHTML();
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+// >>>>>>> 40bdca5db089e49de114408d81b6389112f7f8f8
   // Reset the form
   document.getElementById("myForm").reset();
 }
@@ -166,6 +173,7 @@ function addBook(event) {
     toggleButton.style.display = "none";
     form.style.display = "block";
     // document.body.style.overflow = "hidden"; // disable scrolling
+// <<<<<<< HEAD
 }
 
 
@@ -173,15 +181,18 @@ function addBook(event) {
 
 
 //--------------------- Add Book Section ---------------------
-=======
+// =======
   const book = new Book(title, author, pages, read);
   book.addBookToLibrary();
   book.addBookToHTML();
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
   // Reset the form
   document.getElementById("myForm").reset();
-}
->>>>>>> master
+
+// >>>>>>> master
+// =======
+//   }
+// >>>>>>> 40bdca5db089e49de114408d81b6389112f7f8f8
 
 //--------------------- Counter Section ----------------------
 const readCounter = () => {
