@@ -281,7 +281,7 @@ header.books-list-header {
 #edit-book-wrapper {
   min-height: 100%;
   width: 20%;
-  /* display: none; */
+  display: none;
 }
 
 /* --------------------- Media Queries ------------------------ */
