@@ -2,6 +2,8 @@ let myLibrary = [];
 const booksWrapper = document.getElementById("books-list-wrapper");
 const books = document.querySelectorAll(".book-wrapper");
 
+let width = window.innerWidth;
+
 let counterRead = 0;
 const readCount = document.getElementById("counter-read");
 const unreadCount = document.getElementById("counter-unread");
@@ -71,9 +73,19 @@ class Book {
     book.appendChild(title);
     book.appendChild(author);
     book.appendChild(pages);
-    book.appendChild(readStatus);
-    book.appendChild(edit);
-    book.appendChild(removal);
+    if (width < 601) {
+      console.log("test");
+      const icons = document.createElement("div");
+      icons.classList.add("icons");
+      icons.appendChild(readStatus);
+      icons.appendChild(edit);
+      icons.appendChild(removal);
+      book.appendChild(icons);
+    } else {
+      book.appendChild(readStatus);
+      book.appendChild(edit);
+      book.appendChild(removal);
+    }
     booksWrapper.appendChild(book);
     totalCount.innerText = myLibrary.length;
     totalCountMobile.innerText = myLibrary.length;
@@ -247,6 +259,7 @@ const sortByAuthor = () => {
 }
 //--------------------- List of Books Section ----------------
 const showLibrary = () => {
+  booksWrapper.innerHTML = "";
   if (localStorage.getItem("myLibrary") !== null) {
     retrieveBooks();
   };
@@ -295,6 +308,11 @@ function editBookFormSubmit(event) {
   updateLocalStorage();
   retrieveBooks();
   closeEditForm();
+}
+
+window.onresize = () => {
+  width = window.innerWidth;
+  showLibrary();
 }
 
 showLibrary();

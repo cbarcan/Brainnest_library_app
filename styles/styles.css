@@ -368,7 +368,7 @@ p.author {
   }
 
   #toggleForm {
-    display: block;
+    /* display: block; */
   }
 
   .counter {
@@ -392,75 +392,60 @@ p.author {
   .book-wrapper{
     height: 250px;
     width: 200px;
-    margin-bottom: 5px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: 0 2%;
-    border: 1px solid rgba(192, 192, 192, 0.411);
-    border-radius: 10px;
-    box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.664);
-    background-color: var(--color-bg-variant);
-    -webkit-animation: slideIn 0.5s ease-in;
-    animation: slideIn 0.5s ease-in;
+    margin-bottom: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
   }
 
-  .book-wrapper:hover {
-    cursor: pointer;
-    background-color: var(--color-bg-side);
-    color: var(--color-bg);
+  p.title {
+    height: fit-content;
+    width: 100%;
   }
 
-  .book-wrapper p {
-    align-items: center;
-    margin-right: 1%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-            line-clamp: 2;
-    -webkit-box-orient: vertical;
+  p.author {
+    height: fit-content;
+    width: 100%;
   }
 
-  .removed {
-    -webkit-animation: slideOut 0.5s ease;
-    animation: slideOut 0.5s ease;
+  p.pages {
+    height: fit-content;
+    width: 100%;
   }
 
-  .title {
-    width: 30%;
-  }
-
-  .author {
-    width: 20%;
-  }
-
-  .pages {
-    width: 12%;
-  }
-
-  .status {
-    width: 22%;
+  p.status {
+    height: fit-content;
+    width: 100%;
     text-align: center;
-    justify-content: center;
+    justify-content: flex-end;
   }
 
-  .removal {
-    width: 16%;
+  p.removal {
+    height: fit-content;
+    width: 100%;
     text-align: center;
     justify-content: center;
     position: relative;
-  }
-
-  .removal i{
-    color: var(--color-action-danger);
-    transition: all 0.5s ease-in-out;
   }
 
   .removal i:hover {
-    -ms-transform: scale(1.5);
-    -webkit-transform: scale(1.5);
-    transform: scale(1.5);
+    -ms-transform: none;
+    -webkit-transform: none;
+    transform: none;
+  }
+
+  p.edit {
+    height: fit-content;
+    width:100%;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .edit i:hover {
+    -ms-transform: none;
+    -webkit-transform: none;
+    transform: none;
   }
 
   .counter-wrapper > button {
@@ -479,20 +464,6 @@ p.author {
   list-style: none;
   }
 }
-
-@media screen and (max-width: 480px) {
-
-  #myForm {
-    display: none;
-    width: 100 vw;
-    height: 100 vh;
-  }
-/*
-  #toggleForm {
-    display: block;
-  } */
-}
-
 
 /* --------------------- Animations ------------------------ */
 @-webkit-keyframes slideIn {
