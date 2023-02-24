@@ -101,7 +101,15 @@ p {
   width: 20%;
   background-color: var(--color-bg-side);
 }
-
+.logo {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem 0;
+  justify-content: center;
+}
+.logo >img {
+  width: 3rem;
+}
 .books-wrapper {
   min-height: 100vh;
   width: 80%;
