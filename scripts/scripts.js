@@ -70,8 +70,26 @@ class Book {
       this.removeBookFromLibrary();
       this.removeBookFromHTML();
     };
+    if (width < 601) {
+      const titleLabel = document.createElement("p")
+      titleLabel.classList.add("label");
+      titleLabel.innerText = "Title:"
+      book.appendChild(titleLabel);
+    }
     book.appendChild(title);
+    if (width < 601) {
+      const authorLabel = document.createElement("p")
+      authorLabel.classList.add("label");
+      authorLabel.innerText = "Author:"
+      book.appendChild(authorLabel);
+    }
     book.appendChild(author);
+    if (width < 601) {
+      const pagesLabel = document.createElement("p")
+      pagesLabel.classList.add("label");
+      pagesLabel.innerText = "Pages:"
+      book.appendChild(pagesLabel);
+    }
     book.appendChild(pages);
     if (width < 601) {
       const icons = document.createElement("div");

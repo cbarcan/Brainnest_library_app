@@ -396,40 +396,51 @@ p.author {
     margin-bottom: 10px;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-evenly;
-    padding: 0 7%;
+    padding: 20px 20px;
+  }
+
+  p.label {
+    height: fit-content;
+    width: 100%;
+    font-weight: 700;
   }
 
   p.title {
-    height: fit-content;
+    height: 32px;
     width: 100%;
+    margin-left: 10px;
+    margin-bottom: 20px;
   }
 
   p.author {
     height: fit-content;
     width: 100%;
+    margin-left: 10px;
+    margin-bottom: 20px;
   }
 
   p.pages {
     height: fit-content;
     width: 100%;
+    margin-left: 10px;
+    margin-bottom: 20px;
   }
 
   .icons {
     height: fit-content;
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 
   p.status {
     height: fit-content;
-    width: 100%;
+    width: fit-content;
   }
 
   p.removal {
     height: fit-content;
-    width: 100%;
+    width: fit-content;
   }
 
   .removal i:hover {
@@ -440,7 +451,7 @@ p.author {
 
   p.edit {
     height: fit-content;
-    width:100%;
+    width: fit-content;
   }
 
   .edit i:hover {
