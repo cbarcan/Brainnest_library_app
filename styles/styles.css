@@ -33,8 +33,9 @@
   --color-bg-variant: #f2faf4;
   --color-bg-side: #6D9773;
   --color-bg-darker: #0C3B2E;
-  --color-action-danger: #B46617;
+  --color-action-danger: #ea3546;
   --color-action: #FFBA00;
+  --color-action-variant: #ebead7;
 }
 
 html,
@@ -91,9 +92,7 @@ p {
   cursor: pointer;
 }
 .button:hover {
-  background-color: var(--color-bg-darker);
-  border: 1px solid var(--color-action);
-  color: var(--color-action);
+  background-color: var(--color-action-variant);
 }
 
 /* --------------------- Add Book Section --------------------- */
@@ -139,6 +138,7 @@ label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  font-size: 1.2rem;
 }
 input[type="text"],
 input[type="number"] {
@@ -150,7 +150,7 @@ input[type="number"] {
   background-color: var(--color-bg-side);
   font-size: 16px;
   cursor: pointer;
-  border-bottom: 1px dashed var(--color-action);
+  border-bottom: 1px dashed var(--color-action-variant);
 }
 
 label[for="read"] {
@@ -195,22 +195,22 @@ p.validation {
   width: 90%;
   visibility: hidden;
   font-size: 0.7rem;
-  color: var(--color-action);
+  color: var(--color-action-variant);
   margin-bottom: 0.7rem;
   margin-top: 0.5rem;
 }
 
 input::placeholder{
-  color: var(--color-action);
+  color: var(--color-action-variant);
   font-size: 0.75rem;
 }
 
 input:hover {
-  border-bottom: 1px dashed rgb(94, 93, 93);
+  border-bottom: 1px dashed var(--color-action);
 }
 
 input:focus {
-  border-bottom: 1px dashed var(--color-action);
+  border-bottom: 1px dashed var(--color-action-variant);
 }
 
 input:not(:focus):not(:placeholder-shown):invalid {
