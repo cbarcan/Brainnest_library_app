@@ -414,8 +414,16 @@ p.author {
 
 /* Media Queries (Medium Devices) */
 @media screen and (max-width: 1024px) {
-  .add-book-wrapper {
+  main {
+    display: block;
+  }
+
+  .add-book-wrapper form {
     display: none;
+  }
+
+  .add-book-wrapper {
+    width: 100%;
   }
 
   .books-wrapper {
@@ -522,7 +530,7 @@ p.author {
     -webkit-transform: none;
     transform: none;
   }
-  
+
   .counter-wrapper > button {
   display: none;
   }
