@@ -151,6 +151,10 @@ label[for="read"] {
   float: left;
 }
 
+label[for="edit-read-status"] {
+  float: left;
+}
+
 input[type="checkbox"] {
   height: 20px;
   width: 20px;
@@ -162,7 +166,7 @@ input[type="checkbox"] {
   display: none;
 }
 
-#modal{
+.modal{
   height: 100vh;
   background-color: #000000b6;
   width: 100%;
@@ -208,6 +212,10 @@ input:not(:focus):not(:placeholder-shown):invalid {
 }
 
 input:not(:focus):not(:placeholder-shown):invalid+p {
+  visibility: visible;
+}
+
+input:focus:not(:placeholder-shown):invalid+p {
   visibility: visible;
 }
 
@@ -379,11 +387,23 @@ p.author {
 }
 
 /* --------------------- Edit Book Section -------------------- */
-#edit-book-wrapper {
-  min-height: 100%;
-  width: 20%;
+/* #edit-book-wrapper {
+  height: 100vh;
+  background-color: #000000b6;
+  width: 100%;
   display: none;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
 }
+
+.edit-form {
+
+  width: 80%;
+} */
 
 .edit {
   width: 8%;
@@ -551,14 +571,14 @@ p.author {
 
 
 @media screen and (max-width: 480px) {
-  
+
   .add-book-wrapper{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
   }
-  
+
   #myForm {
     display: none;
     width: 100 vw;

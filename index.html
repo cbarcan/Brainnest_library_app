@@ -11,7 +11,7 @@
 </head>
 <body>
   <main>
-    <div id="modal">
+    <div id="modal" class="modal">
       <form id="modal-myForm" onsubmit="addBookModal(event)" class="mobile-form">
         <label for="title">Title:</label>
         <input
@@ -98,17 +98,43 @@
       </form>
     </section>
     <!--------------------- Edit Book Section --------------------->
-    <section id="edit-book-wrapper">
-      <form>
-        <input type="hidden" id="edit-index" name="edit-index">
+    <section id="edit-book-wrapper" class="modal">
+      <form id="edit-form" class="mobile-form">
         <label for="edit-title">Title:</label>
-        <input type="text" id="edit-title" name="edit-title" required><br>
+        <input
+        type="text"
+        id="edit-title"
+        name="edit-title"
+        placeholder="What is the title of the book?"
+        pattern="[A-Za-z]+[A-Za-z - . ' ,]+[A-Za-z]+"
+        title="*Title must start and end with a letter and can contain only letters, spaces and some symbols"
+        required>
+        <p class="validation">*Title must start and end with a letter and can contain only letters, spaces and some symbols</p>
         <label for="edit-author">Author:</label>
-        <input type="text" id="edit-author" name="edit-author" required><br>
+        <input
+        type="text"
+        id="edit-author"
+        name="edit-author"
+        placeholder="What is the author of the book?"
+        pattern="[A-Za-z]+[A-Za-z - . ' ,]+[A-Za-z]+"
+        title="*Author must start and end with a letter and can contain only letters, spaces and some symbols"
+        required>
+        <p class="validation">*Author must start and end with a letter and can contain only letters, spaces and some symbols</p>
         <label for="edit-pages">Pages:</label>
-        <input type="number" id="edit-pages" name="edit-pages" required><br>
-        <label for="edit-read">Read:</label>
-        <input type="checkbox" id="edit-read" name="edit-read"><br>
+        <input
+        type="number"
+        id="edit-pages"
+        name="edit-pages"
+        placeholder="How many pages has the book?"
+        min="1"
+        max="99999"
+        title="*Pages must be only digits and can contain maximum 5 digits"
+        required>
+        <p class="validation">*Pages must be only digits and can contain maximum 5 digits</p>
+        <div>
+          <label for="edit-read-status">Already read:</label>
+          <input type="checkbox" id="edit-read-status" name="edit-read-status">
+        </div><br>
         <input type="submit" value="Save Changes" class="button">
         <button id="close-edit-form-button" type="button" class="button" onclick="closeEditForm()">Cancel</button>
       </form>
