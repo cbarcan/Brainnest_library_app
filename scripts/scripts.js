@@ -70,8 +70,26 @@ class Book {
       this.removeBookFromLibrary();
       this.removeBookFromHTML();
     };
+    if (width < 601) {
+      const titleLabel = document.createElement("p")
+      titleLabel.classList.add("label");
+      titleLabel.innerText = "Title:"
+      book.appendChild(titleLabel);
+    }
     book.appendChild(title);
+    if (width < 601) {
+      const authorLabel = document.createElement("p")
+      authorLabel.classList.add("label");
+      authorLabel.innerText = "Author:"
+      book.appendChild(authorLabel);
+    }
     book.appendChild(author);
+    if (width < 601) {
+      const pagesLabel = document.createElement("p")
+      pagesLabel.classList.add("label");
+      pagesLabel.innerText = "Pages:"
+      book.appendChild(pagesLabel);
+    }
     book.appendChild(pages);
     if (width < 601) {
       const icons = document.createElement("div");
@@ -149,63 +167,51 @@ function addBook(event) {
   const author = document.getElementById("author").value;
   const pages = parseInt(document.getElementById("pages").value);
   const read = document.getElementById("read").checked;
-  if (pages < 0) {
-    alert("Please enter a valid number of pages.");
-    return;
+  const titleValidation = myLibrary.every(element => {
+    if (element.title === title){
+      alert("This book is already in your Library!\nPlease add another book.")
+      document.getElementById("myForm").reset();
+      return false;
+    }
+    return true;
+  })
+  if (titleValidation) {
+    const book = new Book(title, author, pages, read);
+    book.addBookToLibrary();
+    book.addBookToHTML();
+    updateLocalStorage();
+    document.getElementById("myForm").reset();
   }
-  const book = new Book(title, author, pages, read);
-  book.addBookToLibrary();
-  book.addBookToHTML();
-  updateLocalStorage();
-  // Reset the form
-  document.getElementById("myForm").reset();
 }
 
-// <<<<<<< Updated upstream
 function addBookModal(event) {
   if (event !== undefined) {
       event.preventDefault();
-// =======
-  const form = document.getElementById("myForm");
-  const toggleButton = document.getElementById("toggleForm");
-  
-  function toggleForm() {
-  
-    // hide the button and show the form
-    toggleButton.style.display = "none";
-    form.style.display = "block";
-    // document.body.style.overflow = "hidden"; // disable scrolling
-// >>>>>>> Stashed changes
   }
   const title = document.getElementById("modal-title").value;
   const author = document.getElementById("modal-author").value;
   const pages = parseInt(document.getElementById("modal-pages").value);
   const read = document.getElementById("modal-read").checked;
-  if (pages < 0) {
-    alert("Please enter a valid number of pages.");
-    return;
+  const titleValidation = myLibrary.every(element => {
+    if (element.title === title){
+      alert("This book is already in your Library!\nPlease add another book.")
+      document.getElementById("myForm").reset();
+      return false;
+    }
+    return true;
+  })
+  if (titleValidation) {
+    const book = new Book(title, author, pages, read);
+    book.addBookToLibrary();
+    book.addBookToHTML();
+    updateLocalStorage();
+    document.getElementById("myForm").reset();
+    modal.style.display = "none";
   }
-  const book = new Book(title, author, pages, read);
-  book.addBookToLibrary();
-  book.addBookToHTML();
-  updateLocalStorage();
-  // Reset the form
-  document.getElementById("modal-myForm").reset();
-  modal.style.display = "none";
 }
 
-
-
 function toggleForm() {
-  // if (window.innerWidth < 480) {
-  //   // hide the button and show the form
-  //   toggleButton.style.display = "block";
-  //   form.style.display = "none";
-  //   // document.body.style.overflow = "hidden"; // disable scrolling
-  // }
-  // hide the button and show the form
   modal.style.display = "flex";
-  // document.body.style.overflow = "hidden"; // disable scrolling
 }
 
 //--------------------- Counter Section ----------------------
@@ -327,4 +333,4 @@ window.addEventListener("resize", () => {
   showLibrary();
 })
 
-showLibrary();}
+showLibrary();
