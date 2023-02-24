@@ -184,21 +184,9 @@ function addBook(event) {
   }
 }
 
-// <<<<<<< Updated upstream
 function addBookModal(event) {
   if (event !== undefined) {
       event.preventDefault();
-// =======
-  const form = document.getElementById("myForm");
-  const toggleButton = document.getElementById("toggleForm");
-  
-  function toggleForm() {
-  
-    // hide the button and show the form
-    toggleButton.style.display = "none";
-    form.style.display = "block";
-    // document.body.style.overflow = "hidden"; // disable scrolling
-// >>>>>>> Stashed changes
   }
   const title = document.getElementById("modal-title").value;
   const author = document.getElementById("modal-author").value;
@@ -222,18 +210,8 @@ function addBookModal(event) {
   }
 }
 
-
-
 function toggleForm() {
-  // if (window.innerWidth < 480) {
-  //   // hide the button and show the form
-  //   toggleButton.style.display = "block";
-  //   form.style.display = "none";
-  //   // document.body.style.overflow = "hidden"; // disable scrolling
-  // }
-  // hide the button and show the form
   modal.style.display = "flex";
-  // document.body.style.overflow = "hidden"; // disable scrolling
 }
 
 //--------------------- Counter Section ----------------------
@@ -355,4 +333,4 @@ window.addEventListener("resize", () => {
   showLibrary();
 })
 
-showLibrary();}
+showLibrary();
