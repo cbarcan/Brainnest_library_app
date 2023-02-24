@@ -356,6 +356,10 @@ function closeEditForm() {
   document.getElementById("edit-book-wrapper").style.display = "none";
 }
 
+const closeModal = () => {
+  modal.style.display = "none";
+}
+
 window.addEventListener("resize", () => {
   width = screen.width;
   showLibrary();
