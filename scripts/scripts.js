@@ -167,12 +167,12 @@ function addBook(event) {
   const author = document.getElementById("author").value;
   const pages = parseInt(document.getElementById("pages").value);
   const read = document.getElementById("read").checked;
-  const book = new Book(title, author, pages, read);
   myLibrary.forEach(element => {
     if (element.title === title){
       alert("This book is already in your Library!\nPlease add another book.")
       document.getElementById("myForm").reset();
     } else {
+      const book = new Book(title, author, pages, read);
       book.addBookToLibrary();
       book.addBookToHTML();
       updateLocalStorage();
@@ -189,12 +189,12 @@ function addBookModal(event) {
   const author = document.getElementById("modal-author").value;
   const pages = parseInt(document.getElementById("modal-pages").value);
   const read = document.getElementById("modal-read").checked;
-  const book = new Book(title, author, pages, read);
   myLibrary.forEach(element => {
     if (element.title === title){
       alert("This book is already in your Library!\nPlease add another book.")
       document.getElementById("myForm").reset();
     } else {
+      const book = new Book(title, author, pages, read);
       book.addBookToLibrary();
       book.addBookToHTML();
       updateLocalStorage();
