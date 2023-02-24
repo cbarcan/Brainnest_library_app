@@ -166,7 +166,6 @@ class Book {
 
   openEditForm() {
     // Get the book object from myLibrary
-    console.log(this);
     const book = myLibrary[myLibrary.indexOf(myLibrary.find((book) => book.title === this.title))];
     const editForm = document.getElementById("edit-form");
     const bookTitle = Array.from(document.querySelectorAll(".title")).find(
@@ -181,7 +180,7 @@ class Book {
     document.getElementById("edit-read-status").checked = book.readStatus;
     const editWrapper = document.getElementById("edit-book-wrapper");
     // Show the edit form
-    editWrapper.style.display = "block";
+    editWrapper.style.display = "flex";
     // Add a submit event listener to the edit form
 
     editForm.addEventListener("submit", (event) => {

@@ -3,16 +3,19 @@
   src: url("../assets/fonts/AsapCondensed-MediumItalic.ttf") format("truetype");
   font-weight: normal;
 }
+
 @font-face {
   font-family: "Saira";
   src: url("../assets/fonts/SairaCondensed-Regular.ttf") format("truetype");
   font-weight: normal;
 }
+
 @font-face {
   font-family: "Saira";
   src: url("../assets/fonts/SairaCondensed-Bold.ttf") format("truetype");
   font-weight: bold;
 }
+
 @font-face {
   font-family: "Saira";
   src: url("../assets/fonts/SairaCondensed-Light.ttf") format("truetype");
@@ -91,8 +94,27 @@ p {
   color: var(--color-bg);
   cursor: pointer;
 }
+
 .button:hover {
   background-color: var(--color-action-variant);
+}
+
+.mobile-form .close-button {
+  height: fit-content;
+  width: fit-content;
+  border: none;
+  background: none;
+  position: absolute;
+  top: 26px;
+  right: 35px;
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--color-action);
+}
+
+.close-button:hover {
+  cursor: pointer;
+  color: var(--color-action-danger);
 }
 
 /* --------------------- Add Book Section --------------------- */
@@ -112,23 +134,14 @@ p {
   padding: 1rem 0;
   justify-content: center;
 }
-.logo >img {
+
+.logo>img {
   width: 3rem;
 }
+
 .books-wrapper {
   min-height: 100vh;
   width: 75%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-form {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  margin-top: 2%;
-  /* box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12); */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -140,6 +153,7 @@ label {
   font-weight: bold;
   font-size: 1.2rem;
 }
+
 input[type="text"],
 input[type="number"] {
   display: block;
@@ -161,6 +175,10 @@ label[for="edit-read-status"] {
   float: left;
 }
 
+label:hover {
+  cursor: pointer;
+}
+
 input[type="checkbox"] {
   height: 20px;
   width: 20px;
@@ -172,13 +190,14 @@ input[type="checkbox"] {
   display: none;
 }
 
-.modal{
+.modal {
   height: 100vh;
-  background-color: #000000b6;
+  background-color: #000000f1;
   width: 100%;
   display: none;
   position: fixed;
-  /* display: flex; */
+  top: 0;
+  left: 0;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -187,8 +206,26 @@ input[type="checkbox"] {
 
 .mobile-form {
   height: 80%;
-  width: 80%;
+  width: 85%;
+  position: relative;
   background-color: var(--color-bg-side);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-form input {
+  width: 30%;
+}
+
+.mobile-form input[type="checkbox"] {
+  width: 20px;
+}
+
+.mobile-form button {
+  height: 7%;
+  width: 18%;
 }
 
 p.validation {
@@ -200,7 +237,7 @@ p.validation {
   margin-top: 0.5rem;
 }
 
-input::placeholder{
+input::placeholder {
   color: var(--color-action-variant);
   font-size: 0.75rem;
 }
@@ -262,7 +299,8 @@ input:valid {
 .counter-mobile span {
   font-size: 1.2rem;
 }
-.counter-wrapper> button {
+
+.counter-wrapper>button {
   background-color: var(--color-action-danger);
   color: var(--color-bg);
   text-transform: uppercase;
@@ -273,6 +311,7 @@ input:valid {
   border: 2px solid transparent;
   box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.664);
 }
+
 .counter-wrapper>button:hover {
   background-color: var(--color-bg-variant);
   color: var(--color-action-danger);
@@ -308,7 +347,7 @@ header p {
   margin-right: 1%;
 }
 
-.book-wrapper{
+.book-wrapper {
   height: 70px;
   width: 100%;
   margin-bottom: 5px;
@@ -344,7 +383,7 @@ p.title {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-          line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
@@ -354,7 +393,7 @@ p.author {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-          line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
@@ -375,7 +414,7 @@ p.author {
   position: relative;
 }
 
-.removal i{
+.removal i {
   color: var(--color-action-danger);
 }
 
@@ -400,24 +439,6 @@ i:hover {
 }
 
 /* --------------------- Edit Book Section -------------------- */
-/* #edit-book-wrapper {
-  height: 100vh;
-  background-color: #000000b6;
-  width: 100%;
-  display: none;
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 5000;
-}
-
-.edit-form {
-
-  width: 80%;
-} */
-
 .edit {
   width: 8%;
   text-align: center;
@@ -425,7 +446,7 @@ i:hover {
   position: relative;
 }
 
-.edit i{
+.edit i {
   color: var(--color-action);
 }
 
@@ -448,6 +469,10 @@ i:hover {
     display: none;
   }
 
+  .add-book-container {
+    position: static;
+  }
+
   .add-book-wrapper {
     width: 100%;
   }
@@ -455,6 +480,7 @@ i:hover {
   .books-wrapper {
     width: 100%;
   }
+
   .counter-wrapper {
     width: 100%;
     justify-content: space-evenly;
@@ -468,12 +494,12 @@ i:hover {
     font-size: 1rem;
   }
 
-  /* #toggleForm {
-    display: block;
-  } */
-
   .counter {
     flex-direction: column;
+  }
+
+  #toggleForm {
+    display: block;
   }
 }
 
@@ -491,7 +517,7 @@ i:hover {
     display: none;
   }
 
-  .book-wrapper{
+  .book-wrapper {
     height: 250px;
     width: 200px;
     margin-bottom: 10px;
@@ -561,46 +587,25 @@ i:hover {
     transform: none;
   }
 
-  .counter-wrapper > button {
-  display: none;
-  }
-  .counter-wrapper >i {
-  display: block;
-  font-size: 3rem;
-  color: var(--color-action-danger);
-  }
-  .counter {
-  display: none;
-  }
-  .counter-mobile {
-  display: block;
-  list-style: none;
-  }
-}
-
-
-
-@media screen and (max-width: 480px) {
-
-  .add-book-wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  #myForm {
+  .counter-wrapper>button {
     display: none;
-    width: 100 vw;
-    height: 100 vh;
   }
 
-  #toggleForm {
+  .counter-wrapper>i {
     display: block;
+    font-size: 3rem;
+    color: var(--color-action-danger);
+  }
+
+  .counter {
+    display: none;
+  }
+
+  .counter-mobile {
+    display: block;
+    list-style: none;
   }
 }
-
-
 
 /* --------------------- Animations ------------------------ */
 @-webkit-keyframes slideIn {
@@ -609,6 +614,7 @@ i:hover {
     left: 100vw;
     visibility: hidden;
   }
+
   to {
     visibility: visible;
     opacity: 1;
@@ -622,6 +628,7 @@ i:hover {
     left: 100vw;
     visibility: hidden;
   }
+
   to {
     visibility: visible;
     opacity: 1;
@@ -634,6 +641,7 @@ i:hover {
     opacity: 1;
     left: 0;
   }
+
   to {
     opacity: 0;
     left: 100vw;
@@ -645,6 +653,7 @@ i:hover {
     opacity: 1;
     left: 0;
   }
+
   to {
     opacity: 0;
     left: 100vw;
