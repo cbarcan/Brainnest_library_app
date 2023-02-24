@@ -167,16 +167,18 @@ function addBook(event) {
   const author = document.getElementById("author").value;
   const pages = parseInt(document.getElementById("pages").value);
   const read = document.getElementById("read").checked;
-  // if (pages < 0) {
-  //   alert("Please enter a valid number of pages.");
-  //   return;
-  // }
   const book = new Book(title, author, pages, read);
-  book.addBookToLibrary();
-  book.addBookToHTML();
-  updateLocalStorage();
-  // Reset the form
-  document.getElementById("myForm").reset();
+  myLibrary.forEach(element => {
+    if (element.title === title){
+      alert("This book is already in your Library!\nPlease add another book.")
+      document.getElementById("myForm").reset();
+    } else {
+      book.addBookToLibrary();
+      book.addBookToHTML();
+      updateLocalStorage();
+      document.getElementById("myForm").reset();
+    }
+  })
 }
 
 function addBookModal(event) {
@@ -187,17 +189,19 @@ function addBookModal(event) {
   const author = document.getElementById("modal-author").value;
   const pages = parseInt(document.getElementById("modal-pages").value);
   const read = document.getElementById("modal-read").checked;
-  // if (pages < 0) {
-  //   alert("Please enter a valid number of pages.");
-  //   return;
-  // }
   const book = new Book(title, author, pages, read);
-  book.addBookToLibrary();
-  book.addBookToHTML();
-  updateLocalStorage();
-  // Reset the form
-  document.getElementById("modal-myForm").reset();
-  modal.style.display = "none";
+  myLibrary.forEach(element => {
+    if (element.title === title){
+      alert("This book is already in your Library!\nPlease add another book.")
+      document.getElementById("myForm").reset();
+    } else {
+      book.addBookToLibrary();
+      book.addBookToHTML();
+      updateLocalStorage();
+      document.getElementById("myForm").reset();
+      modal.style.display = "none";
+    }
+  })
 }
 
 
