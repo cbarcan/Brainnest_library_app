@@ -81,11 +81,11 @@ p {
 
 .button {
   display: block;
-  width: 90%;
+  width: 80%;
   padding: 10px;
   margin-bottom: 0.3rem;
   border: none;
-  border-radius: 3px;
+  border-radius: 10px;
   background-color: var(--color-bg-darker);
   color: var(--color-bg);
   cursor: pointer;
@@ -98,13 +98,13 @@ p {
 
 /* --------------------- Add Book Section --------------------- */
 .add-book-wrapper {
-  width: 20%;
+  width: 25%;
   background-color: var(--color-bg-side);
 }
 
 .books-wrapper {
   min-height: 100vh;
-  width: 80%;
+  width: 75%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -127,14 +127,27 @@ label {
   font-weight: bold;
 }
 input[type="text"],
-input[type="number"],
-button[type="submit"] {
+input[type="number"] {
   display: block;
+  height: 1.5rem;
   width: 90%;
-  padding: 10px;
-  border-radius: 3px;
+  border: none;
+  outline: none;
+  background-color: var(--color-bg-side);
   font-size: 16px;
   cursor: pointer;
+  border-bottom: 1px dashed var(--color-action);
+}
+
+label[for="read"] {
+  float: left;
+}
+
+input[type="checkbox"] {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  margin-left: 10px;
 }
 
 #toggleForm {
@@ -158,6 +171,44 @@ button[type="submit"] {
   height: 80%;
   width: 80%;
   background-color: var(--color-bg-side);
+}
+
+p.validation {
+  width: 90%;
+  visibility: hidden;
+  font-size: 0.7rem;
+  color: var(--color-action);
+  margin-bottom: 0.7rem;
+  margin-top: 0.5rem;
+}
+
+input::placeholder{
+  color: var(--color-action);
+  font-size: 0.75rem;
+}
+
+input:hover {
+  border-bottom: 1px dashed rgb(94, 93, 93);
+}
+
+input:focus {
+  border-bottom: 1px dashed var(--color-action);
+}
+
+input:not(:focus):not(:placeholder-shown):invalid {
+  border-bottom: 1px dashed red;
+}
+
+input:not(:focus):not(:placeholder-shown):invalid+p {
+  visibility: visible;
+}
+
+input:focus:not(:placeholder-shown):invalid {
+  border-bottom: 1px dashed red;
+}
+
+input:valid {
+  border-bottom: 1px dashed rgb(2, 221, 2);
 }
 
 /* --------------------- Counter Section ---------------------- */

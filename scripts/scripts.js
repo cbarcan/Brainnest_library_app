@@ -167,10 +167,10 @@ function addBook(event) {
   const author = document.getElementById("author").value;
   const pages = parseInt(document.getElementById("pages").value);
   const read = document.getElementById("read").checked;
-  if (pages < 0) {
-    alert("Please enter a valid number of pages.");
-    return;
-  }
+  // if (pages < 0) {
+  //   alert("Please enter a valid number of pages.");
+  //   return;
+  // }
   const book = new Book(title, author, pages, read);
   book.addBookToLibrary();
   book.addBookToHTML();
@@ -187,10 +187,10 @@ function addBookModal(event) {
   const author = document.getElementById("modal-author").value;
   const pages = parseInt(document.getElementById("modal-pages").value);
   const read = document.getElementById("modal-read").checked;
-  if (pages < 0) {
-    alert("Please enter a valid number of pages.");
-    return;
-  }
+  // if (pages < 0) {
+  //   alert("Please enter a valid number of pages.");
+  //   return;
+  // }
   const book = new Book(title, author, pages, read);
   book.addBookToLibrary();
   book.addBookToHTML();

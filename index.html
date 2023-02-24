@@ -11,36 +11,86 @@
 <body>
   <main>
     <div id="modal">
-      <form id="modal-myForm" class="mobile-form">
+      <form id="modal-myForm" onsubmit="addBookModal(event)" class="mobile-form">
         <label for="title">Title:</label>
-        <input type="text" id="modal-title" name="title"><br>
+        <input
+        type="text"
+        id="modal-title"
+        name="title"
+        placeholder="What is the title of the book?"
+        pattern="[A-Za-z]+[A-Za-z - .]+[A-Za-z]+"
+        title="*Title must start and end with a letter and can contain only letters, spaces, - and ."
+        required>
+        <p class="validation">*Title must start and end with a letter and can contain only letters, spaces, - and .</p>
         <label for="author">Author:</label>
-        <input type="text" id="modal-author" name="author"><br>
+        <input
+        type="text"
+        id="modal-author"
+        name="author"
+        placeholder="What is the author of the book?"
+        pattern="[A-Za-z]+[A-Za-z - .]+[A-Za-z]+"
+        title="*Author must start and end with a letter and can contain only letters, spaces, - and ."
+        required>
+        <p class="validation">*Author must start and end with a letter and can contain only letters, spaces, - and .</p>
         <label for="pages">Pages:</label>
-        <input type="number" id="modal-pages" name="pages"><br>
-        <label for="read">Already read:</label>
-        <input type="checkbox" id="modal-read" name="read"><br>
-        <button onclick="addBookModal(event)">Add Book</button>
+        <input
+        type="number"
+        id="modal-pages"
+        name="pages"
+        placeholder="How many pages does the book have?"
+        min="1"
+        max="99999"
+        title="*Pages must be only digits and can contain maximum 5 digits"
+        required>
+        <p class="validation">*Pages must be only digits and can contain maximum 5 digits</p>
+        <div>
+          <label for="read">Already read:</label>
+          <input type="checkbox" id="modal-read" name="read">
+        </div><br>
+        <button class="button">Add Book</button>
       </form>
     </div>
     <button id="toggleForm" onclick="toggleForm()">Show Form</button>
     <!--------------------- Add Book Section --------------------->
     <section class="add-book-wrapper">
       <h1>Library</h1>
-      <form id="myForm">
+      <form id="myForm" onsubmit="addBook(event)">
         <label for="title">Title:</label>
-        <input type="text" id="title" name="title"><br>
-
+        <input
+        type="text"
+        id="title"
+        name="title"
+        placeholder="What is the title of the book?"
+        pattern="[A-Za-z]+[A-Za-z - .]+[A-Za-z]+"
+        title="*Title must start and end with a letter and can contain only letters, spaces, - and ."
+        required>
+        <p class="validation">*Title must start and end with a letter and can contain only letters, spaces, - and .</p>
         <label for="author">Author:</label>
-        <input type="text" id="author" name="author"><br>
-
+        <input
+        type="text"
+        id="author"
+        name="author"
+        placeholder="What is the author of the book?"
+        pattern="[A-Za-z]+[A-Za-z - .]+[A-Za-z]+"
+        title="*Author must start and end with a letter and can contain only letters, spaces, - and ."
+        required>
+        <p class="validation">*Author must start and end with a letter and can contain only letters, spaces, - and .</p>
         <label for="pages">Pages:</label>
-        <input type="number" id="pages" name="pages"><br>
-
-        <label for="read">Already read:</label>
-        <input type="checkbox" id="read" name="read"><br>
-
-        <button class="button" onclick="addBook(event)">Add Book</button>
+        <input
+        type="number"
+        id="pages"
+        name="pages"
+        placeholder="How many pages has the book?"
+        min="1"
+        max="99999"
+        title="*Pages must be only digits and can contain maximum 5 digits"
+        required>
+        <p class="validation">*Pages must be only digits and can contain maximum 5 digits</p>
+        <div>
+          <label for="read">Already read:</label>
+          <input type="checkbox" id="read" name="read">
+        </div><br>
+        <button class="button">Add Book</button>
       </form>
     </section>
     <!--------------------- Edit Book Section --------------------->
