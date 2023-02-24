@@ -101,6 +101,12 @@ p {
   width: 25%;
   background-color: var(--color-bg-side);
 }
+
+.add-book-container {
+  position: sticky;
+  top: 0;
+}
+
 .logo {
   display: flex;
   gap: 0.5rem;
