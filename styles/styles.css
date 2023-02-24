@@ -121,6 +121,8 @@ p {
 .add-book-wrapper {
   width: 25%;
   background-color: var(--color-bg-side);
+  /* display: flex;
+  justify-content: center; */
 }
 
 .add-book-container {
@@ -137,6 +139,12 @@ p {
 
 .logo>img {
   width: 3rem;
+}
+
+#myForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .books-wrapper {
