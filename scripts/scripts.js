@@ -167,18 +167,21 @@ function addBook(event) {
   const author = document.getElementById("author").value;
   const pages = parseInt(document.getElementById("pages").value);
   const read = document.getElementById("read").checked;
-  myLibrary.forEach(element => {
+  const titleValidation = myLibrary.every(element => {
     if (element.title === title){
       alert("This book is already in your Library!\nPlease add another book.")
       document.getElementById("myForm").reset();
-    } else {
-      const book = new Book(title, author, pages, read);
-      book.addBookToLibrary();
-      book.addBookToHTML();
-      updateLocalStorage();
-      document.getElementById("myForm").reset();
+      return false;
     }
+    return true;
   })
+  if (titleValidation) {
+    const book = new Book(title, author, pages, read);
+    book.addBookToLibrary();
+    book.addBookToHTML();
+    updateLocalStorage();
+    document.getElementById("myForm").reset();
+  }
 }
 
 function addBookModal(event) {
@@ -189,19 +192,22 @@ function addBookModal(event) {
   const author = document.getElementById("modal-author").value;
   const pages = parseInt(document.getElementById("modal-pages").value);
   const read = document.getElementById("modal-read").checked;
-  myLibrary.forEach(element => {
+  const titleValidation = myLibrary.every(element => {
     if (element.title === title){
       alert("This book is already in your Library!\nPlease add another book.")
       document.getElementById("myForm").reset();
-    } else {
-      const book = new Book(title, author, pages, read);
-      book.addBookToLibrary();
-      book.addBookToHTML();
-      updateLocalStorage();
-      document.getElementById("myForm").reset();
-      modal.style.display = "none";
+      return false;
     }
+    return true;
   })
+  if (titleValidation) {
+    const book = new Book(title, author, pages, read);
+    book.addBookToLibrary();
+    book.addBookToHTML();
+    updateLocalStorage();
+    document.getElementById("myForm").reset();
+    modal.style.display = "none";
+  }
 }
 
 
