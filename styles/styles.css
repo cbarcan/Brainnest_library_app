@@ -187,7 +187,18 @@ input[type="checkbox"] {
 }
 
 #toggleForm {
+  height: 50px;
+  width: 50px;
   display: none;
+  position: fixed;
+  bottom: 25px;
+  right: 30px;
+  background-color: var(--color-bg-darker);
+  color: var(--color-action-variant);
+  border: none;
+  font-size: 40px;
+  border-radius: 50%;
+  z-index: 300;
 }
 
 .modal {
@@ -501,6 +512,15 @@ i:hover {
   #toggleForm {
     display: block;
   }
+
+  .mobile-form input {
+    width: 60%;
+  }
+
+  .mobile-form button {
+    height: 7%;
+    width: 50%;
+  }
 }
 
 /* Media Queries (Small Devices) */
@@ -604,6 +624,10 @@ i:hover {
   .counter-mobile {
     display: block;
     list-style: none;
+  }
+
+  .mobile-form input {
+    width: 80%;
   }
 }
 
