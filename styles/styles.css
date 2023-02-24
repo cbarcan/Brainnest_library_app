@@ -29,6 +29,7 @@
   font-size: 18px;
   font-weight: normal;
   font-family: "Quick", sans-serif;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -488,7 +489,7 @@ i:hover {
     display: block;
   }
 
-  .add-book-wrapper form {
+  #myForm {
     display: none;
   }
 

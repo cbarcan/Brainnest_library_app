@@ -13,6 +13,7 @@ const unreadCountMobile = document.getElementById("counter-unread-mobile");
 const totalCountMobile = document.getElementById("counter-total-mobile");
 
 const modal = document.getElementById("modal");
+const editWrapper = document.getElementById("edit-book-wrapper");
 const toggleButton = document.getElementById("toggleForm");
 
 const updateLocalStorage = () =>{
@@ -112,22 +113,16 @@ class Book {
   }
 
   removeBookFromLibrary() {
-    const index = myLibrary.indexOf(
-      myLibrary.find((book) => book.title === this.title)
-    );
+    const index = myLibrary.indexOf(myLibrary.find((book) => book.title === this.title));
     myLibrary.splice(index, 1);
     updateLocalStorage();
   }
 
   removeBookFromHTML() {
-    const title = Array.from(document.querySelectorAll(".title")).find(
-      (el) => el.textContent === this.title
-    );
+    const title = Array.from(document.querySelectorAll(".title")).find((el) => el.textContent === this.title);
     const book = title.parentElement;
     book.classList.add("removed");
-    book.addEventListener("animationend", () => {
-      booksWrapper.removeChild(book);
-    });
+    book.addEventListener("animationend", () => booksWrapper.removeChild(book));
     if (this.readStatus === true) {
       counterRead--;
       readCount.innerText = counterRead;
@@ -139,9 +134,7 @@ class Book {
 
   statusChange() {
     this.readStatus = !this.readStatus;
-    const title = Array.from(document.querySelectorAll(".title")).find(
-      (el) => el.textContent === this.title
-    );
+    const title = Array.from(document.querySelectorAll(".title")).find((el) => el.textContent === this.title);
     const book = title.parentElement;
     if (this.readStatus === true) {
       book.childNodes[3].innerHTML = `<i class="fa-solid fa-check"></i>`;
@@ -149,9 +142,7 @@ class Book {
       book.childNodes[3].innerHTML = `<i class="fa-solid fa-xmark"></i>`;
     }
     book.childNodes[3].firstChild.onclick = () => this.statusChange();
-    const index = myLibrary.indexOf(
-      myLibrary.find((book) => book.title === this.title)
-    );
+    const index = myLibrary.indexOf(myLibrary.find((book) => book.title === this.title));
     myLibrary[index].readStatus = this.readStatus;
     updateLocalStorage();
     if (this.readStatus !== true) {
@@ -168,9 +159,7 @@ class Book {
     // Get the book object from myLibrary
     const book = myLibrary[myLibrary.indexOf(myLibrary.find((book) => book.title === this.title))];
     const editForm = document.getElementById("edit-form");
-    const bookTitle = Array.from(document.querySelectorAll(".title")).find(
-      (el) => el.textContent === book.title
-    );
+    const bookTitle = Array.from(document.querySelectorAll(".title")).find((el) => el.textContent === book.title);
     const bookElement = bookTitle.parentElement;
 
     // Populate the form fields with the book's current details
@@ -178,7 +167,6 @@ class Book {
     document.getElementById("edit-author").value = book.author;
     document.getElementById("edit-pages").value = book.pages;
     document.getElementById("edit-read-status").checked = book.readStatus;
-    const editWrapper = document.getElementById("edit-book-wrapper");
     // Show the edit form
     editWrapper.style.display = "flex";
     // Add a submit event listener to the edit form
@@ -221,7 +209,7 @@ class Book {
 }
 
 //--------------------- Add Book Section (H) ---------------------
-function addBook(event) {
+const addBook = (event) => {
   if (event !== undefined) {
       event.preventDefault();
   }
@@ -243,12 +231,13 @@ function addBook(event) {
     book.addBookToHTML();
     updateLocalStorage();
     document.getElementById("myForm").reset();
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   }
 }
 
-function addBookModal(event) {
+const addBookModal = (event) => {
   if (event !== undefined) {
-      event.preventDefault();
+    event.preventDefault();
   }
   const title = document.getElementById("modal-title").value;
   const author = document.getElementById("modal-author").value;
@@ -269,10 +258,11 @@ function addBookModal(event) {
     updateLocalStorage();
     document.getElementById("myForm").reset();
     modal.style.display = "none";
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   }
 }
 
-function toggleForm() {
+const toggleForm = () => {
   modal.style.display = "flex";
 }
 
@@ -308,7 +298,6 @@ const sortByTitle = () => {
   myLibrary.sort((a, b) => {
     let titleA =  a.title.toLowerCase();
     let titleB = b.title.toLowerCase();
-
     if (titleA < titleB) {
       return -1
     } if (titleA > titleB) {
@@ -323,9 +312,8 @@ const sortByTitle = () => {
 const sortByAuthor = () => {
   retrieveBooks();
   myLibrary.sort((a, b) => {
-  let authorA =  a.author.toLowerCase();
+    let authorA =  a.author.toLowerCase();
     let authorB = b.author.toLowerCase();
-
     if (authorA < authorB) {
       return -1
     } if (authorA > authorB) {
@@ -350,11 +338,11 @@ const showLibrary = () => {
 }
 
 //--------------------- Edit Book Section --------------------
-document.getElementById("close-edit-form-button").addEventListener("click", closeEditForm);
-
-function closeEditForm() {
+const closeEditForm = () => {
   document.getElementById("edit-book-wrapper").style.display = "none";
 }
+
+document.getElementById("close-edit-form-button").addEventListener("click", () => closeEditForm);
 
 const closeModal = () => {
   modal.style.display = "none";
@@ -364,5 +352,14 @@ window.addEventListener("resize", () => {
   width = screen.width;
   showLibrary();
 })
+
+window.onclick = (event) => {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  };
+  if (event.target == editWrapper) {
+    editWrapper.style.display = "none";
+  };
+}
 
 showLibrary();
