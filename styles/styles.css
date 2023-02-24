@@ -91,12 +91,15 @@ p {
   border: none;
   border-radius: 10px;
   background-color: var(--color-bg-darker);
-  color: var(--color-bg);
+  color: var(--color-action-variant);
   cursor: pointer;
 }
 
 .button:hover {
   background-color: var(--color-action-variant);
+  color: var(--color-bg-darker);
+  border: 2px solid var(--color-bg-darker);
+  font-weight: 700;
 }
 
 .mobile-form .close-button {
@@ -169,6 +172,7 @@ input[type="number"] {
   width: 90%;
   border: none;
   outline: none;
+  color: var(--color-action-variant);
   background-color: var(--color-bg-side);
   font-size: 16px;
   cursor: pointer;
@@ -235,7 +239,7 @@ input[type="checkbox"] {
 }
 
 .mobile-form input {
-  width: 30%;
+  width: 40%;
 }
 
 .mobile-form input[type="checkbox"] {
@@ -244,7 +248,7 @@ input[type="checkbox"] {
 
 .mobile-form button {
   height: 7%;
-  width: 18%;
+  width: 25%;
 }
 
 p.validation {
