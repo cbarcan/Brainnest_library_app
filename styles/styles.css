@@ -548,6 +548,30 @@ p.author {
   }
 }
 
+
+
+@media screen and (max-width: 480px) {
+  
+  .add-book-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  #myForm {
+    display: none;
+    width: 100 vw;
+    height: 100 vh;
+  }
+
+  #toggleForm {
+    display: block;
+  }
+}
+
+
+
 /* --------------------- Animations ------------------------ */
 @-webkit-keyframes slideIn {
   from {
