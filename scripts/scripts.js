@@ -161,9 +161,21 @@ function addBook(event) {
   document.getElementById("myForm").reset();
 }
 
+// <<<<<<< Updated upstream
 function addBookModal(event) {
   if (event !== undefined) {
       event.preventDefault();
+// =======
+  const form = document.getElementById("myForm");
+  const toggleButton = document.getElementById("toggleForm");
+  
+  function toggleForm() {
+  
+    // hide the button and show the form
+    toggleButton.style.display = "none";
+    form.style.display = "block";
+    // document.body.style.overflow = "hidden"; // disable scrolling
+// >>>>>>> Stashed changes
   }
   const title = document.getElementById("modal-title").value;
   const author = document.getElementById("modal-author").value;
@@ -315,4 +327,4 @@ window.addEventListener("resize", () => {
   showLibrary();
 })
 
-showLibrary();
+showLibrary();}
