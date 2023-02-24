@@ -24,20 +24,22 @@ const retrieveBooks = () =>  {
 };
 
 class Book {
-
   constructor(title, author, pages, readStatus = false) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.readStatus = readStatus;
+    this.id = Date.now().toString(); // add a unique ID to each book
   }
 
   addBookToLibrary() {
     myLibrary.push(this);
+    updateLocalStorage();
   }
 
   addBookToHTML() {
     const book = document.createElement("div");
+    book.id = this.id; // set the ID of the book wrapper element
     const title = document.createElement("p");
     const author = document.createElement("p");
     const pages = document.createElement("p");
@@ -57,14 +59,18 @@ class Book {
     } else {
       readStatus.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
     }
-    edit.classList.add("edit")
+    edit.classList.add("edit");
     edit.innerHTML = `<i class="fa-regular fa-pen-to-square"></i>`;
+    edit.dataset.id = this.id;
+    edit.addEventListener("click", (event) => {
+      const bookId = event.target.closest(".book-wrapper").id;
+      this.openEditForm(bookId);
+    });
+
     removal.classList.add("removal");
     removal.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
     const iReadStatus = readStatus.firstChild;
     iReadStatus.onclick = () => this.statusChange();
-    const iEdit = edit.firstChild;
-    iEdit.onclick = () => this.openEditForm();
     const iRemove = removal.firstChild;
     iRemove.onclick = () => {
       this.removeBookFromLibrary();
@@ -95,13 +101,17 @@ class Book {
   }
 
   removeBookFromLibrary() {
-    const index = myLibrary.indexOf(myLibrary.find(book => book.title === this.title));
+    const index = myLibrary.indexOf(
+      myLibrary.find((book) => book.title === this.title)
+    );
     myLibrary.splice(index, 1);
     updateLocalStorage();
   }
 
   removeBookFromHTML() {
-    const title = Array.from(document.querySelectorAll('.title')).find(el => el.textContent === this.title);
+    const title = Array.from(document.querySelectorAll(".title")).find(
+      (el) => el.textContent === this.title
+    );
     const book = title.parentElement;
     book.classList.add("removed");
     book.addEventListener("animationend", () => {
@@ -118,7 +128,9 @@ class Book {
 
   statusChange() {
     this.readStatus = !this.readStatus;
-    const title = Array.from(document.querySelectorAll('.title')).find(el => el.textContent === this.title);
+    const title = Array.from(document.querySelectorAll(".title")).find(
+      (el) => el.textContent === this.title
+    );
     const book = title.parentElement;
     if (this.readStatus === true) {
       book.childNodes[3].innerHTML = `<i class="fa-solid fa-check"></i>`;
@@ -126,7 +138,9 @@ class Book {
       book.childNodes[3].innerHTML = `<i class="fa-solid fa-xmark"></i>`;
     }
     book.childNodes[3].firstChild.onclick = () => this.statusChange();
-    const index = myLibrary.indexOf(myLibrary.find(book => book.title === this.title));
+    const index = myLibrary.indexOf(
+      myLibrary.find((book) => book.title === this.title)
+    );
     myLibrary[index].readStatus = this.readStatus;
     updateLocalStorage();
     if (this.readStatus !== true) {
@@ -137,6 +151,51 @@ class Book {
       readCounter();
     }
     unreadCounter();
+  }
+
+  openEditForm(bookId) {
+    // Get the book object from myLibrary
+    const book = myLibrary.find((book) => book.id === bookId);
+
+    // Populate the form fields with the book's current details
+    document.getElementById("edit-title").value = book.title;
+    document.getElementById("edit-author").value = book.author;
+    document.getElementById("edit-pages").value = book.pages;
+    document.getElementById("edit-read-status").checked = book.readStatus;
+
+    // Show the edit form
+    modal.classList.add("active");
+
+    // Add a submit event listener to the edit form
+    const editForm = document.getElementById("edit-form");
+    editForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      // Update the book object with the new details
+      book.title = document.getElementById("edit-title").value;
+      book.author = document.getElementById("edit-author").value;
+      book.pages = document.getElementById("edit-pages").value;
+      book.readStatus = document.getElementById("edit-read-status").checked;
+
+      // Update the book details in the HTML
+      const bookElement = document.getElementById(book.id);
+      bookElement.querySelector(".title").innerText = book.title;
+      bookElement.querySelector(".author").innerText = book.author;
+      bookElement.querySelector(".pages").innerText = book.pages;
+      const readStatusIcon = bookElement.querySelector(".status i");
+      if (book.readStatus) {
+        readStatusIcon.classList.remove("fa-xmark");
+        readStatusIcon.classList.add("fa-check");
+      } else {
+        readStatusIcon.classList.remove("fa-check");
+        readStatusIcon.classList.add("fa-xmark");
+      }
+
+      // Hide the edit form
+      modal.classList.remove("active");
+
+      // Update the book object in localStorage
+      updateLocalStorage();
+    });
   }
 }
 
@@ -181,8 +240,6 @@ function addBookModal(event) {
   document.getElementById("modal-myForm").reset();
   modal.style.display = "none";
 }
-
-
 
 function toggleForm() {
   // if (window.innerWidth < 480) {
@@ -278,17 +335,7 @@ function toggleReadStatus(index) {
 }
 //--------------------- Edit Book Section --------------------
 document.getElementById("close-edit-form-button").addEventListener("click", closeEditForm);
-// document.getElementById("edit-book-form").addEventListener("submit", editBookFormSubmit);
-
-function openEditForm(index) {
-  let book = myLibrary[index];
-  document.getElementById("edit-index").value = index;
-  document.getElementById("edit-title").value = book.title;
-  document.getElementById("edit-author").value = book.author;
-  document.getElementById("edit-pages").value = book.pages;
-  document.getElementById("edit-read").checked = book.readStatus;
-  document.getElementById("edit-book-wrapper").style.display = "block";
-}
+// document.getElementById("edit-book-wrapper").addEventListener("submit", editBookFormSubmit);
 
 function closeEditForm() {
   document.getElementById("edit-book-wrapper").style.display = "none";
