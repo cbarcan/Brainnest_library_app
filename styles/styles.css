@@ -362,6 +362,10 @@ p.author {
   .books-wrapper {
     width: 100%;
   }
+  .counter-wrapper {
+    width: 100%;
+    justify-content: space-evenly;
+  }
 
   p {
     font-size: 0.8rem;
@@ -448,7 +452,7 @@ p.author {
     -webkit-transform: none;
     transform: none;
   }
-
+  
   .counter-wrapper > button {
   display: none;
   }
