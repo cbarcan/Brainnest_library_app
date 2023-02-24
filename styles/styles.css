@@ -101,7 +101,15 @@ p {
   width: 25%;
   background-color: var(--color-bg-side);
 }
-
+.logo {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem 0;
+  justify-content: center;
+}
+.logo >img {
+  width: 3rem;
+}
 .books-wrapper {
   min-height: 100vh;
   width: 75%;
@@ -413,6 +421,10 @@ p.author {
   .books-wrapper {
     width: 100%;
   }
+  .counter-wrapper {
+    width: 100%;
+    justify-content: space-evenly;
+  }
 
   p {
     font-size: 0.8rem;
@@ -510,7 +522,7 @@ p.author {
     -webkit-transform: none;
     transform: none;
   }
-
+  
   .counter-wrapper > button {
   display: none;
   }
