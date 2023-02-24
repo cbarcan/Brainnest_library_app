@@ -352,7 +352,6 @@ const showLibrary = () => {
 
 //--------------------- Edit Book Section --------------------
 document.getElementById("close-edit-form-button").addEventListener("click", closeEditForm);
-// document.getElementById("edit-book-wrapper").addEventListener("submit", editBookFormSubmit);
 
 function closeEditForm() {
   document.getElementById("edit-book-wrapper").style.display = "none";
