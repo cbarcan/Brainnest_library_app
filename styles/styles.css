@@ -324,12 +324,6 @@ header p {
   animation: slideIn 0.5s ease-in;
 }
 
-.book-wrapper:hover {
-  cursor: pointer;
-  background-color: var(--color-bg-side);
-  color: var(--color-bg);
-}
-
 .book-wrapper p {
   height: 100%;
   display: flex;
@@ -383,10 +377,23 @@ p.author {
 
 .removal i{
   color: var(--color-action-danger);
+}
+
+.fa-check {
+  color: var(--color-bg-side);
+}
+
+.fa-xmark {
+  color: var(--color-action-danger);
+}
+
+i {
+  font-size: 1.2rem;
   transition: all 0.5s ease-in-out;
 }
 
-.removal i:hover {
+i:hover {
+  cursor: pointer;
   -ms-transform: scale(1.5);
   -webkit-transform: scale(1.5);
   transform: scale(1.5);
@@ -419,14 +426,7 @@ p.author {
 }
 
 .edit i{
-  color: var(--color-action-danger);
-  transition: all 0.5s ease-in-out;
-}
-
-.edit i:hover {
-  -ms-transform: scale(1.5);
-  -webkit-transform: scale(1.5);
-  transform: scale(1.5);
+  color: var(--color-action);
 }
 
 /* --------------------- Media Queries ------------------------ */
@@ -462,6 +462,10 @@ p.author {
 
   p {
     font-size: 0.8rem;
+  }
+
+  i {
+    font-size: 1rem;
   }
 
   /* #toggleForm {
