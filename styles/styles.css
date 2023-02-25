@@ -33,13 +33,14 @@
 }
 
 :root {
-  --color-bg: #f1efef;
-  --color-bg-variant: #f2faf4;
-  --color-bg-side: #6D9773;
+  --color-bg: #e2efd7;
+  --color-bg-variant: #f3fbed;
+  --color-bg-side: #4E6C50;
   --color-bg-darker: #0C3B2E;
-  --color-action-danger: #ea3546;
-  --color-action: #FFBA00;
+  --color-action-danger: #820000;
+  --color-action: #0C3B2E;
   --color-action-variant: #ebead7;
+  --color-white: #fff;
 }
 
 html,
@@ -129,7 +130,6 @@ p {
   justify-content: center; */
   box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.664);
   z-index: 2;
-
 }
 
 .add-book-container {
@@ -331,7 +331,7 @@ input:valid {
 
 .counter-wrapper>button {
   background-color: var(--color-action-danger);
-  color: var(--color-bg);
+  color: var(--color-white);
   text-transform: uppercase;
   padding: 1rem;
   font-size: 1rem;
@@ -369,7 +369,7 @@ header.books-list-header {
   border-radius: 10px;
   box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.664);
   background-color: var(--color-bg-darker);
-  color: var(--color-bg);
+  color: var(--color-white);
 }
 
 header p {
