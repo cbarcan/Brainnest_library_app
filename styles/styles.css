@@ -128,7 +128,7 @@ p {
   background-color: var(--color-bg-side);
   /* display: flex;
   justify-content: center; */
-  box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.664);
+  box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.664);
   z-index: 2;
 }
 
