@@ -41,6 +41,7 @@
   --color-action: #0C3B2E;
   --color-action-variant: #ebead7;
   --color-white: #fff;
+  --color-dark: #1a231a;
 }
 
 html,
@@ -65,6 +66,7 @@ h3,
 h4,
 h5 {
   font-weight: 500;
+  color: var(--color-dark);
 }
 
 h1 {
@@ -83,6 +85,9 @@ h3 {
 h4,
 p {
   font-size: 1rem;
+}
+label {
+  color: var(--color-dark);
 }
 
 .button {
@@ -126,9 +131,7 @@ p {
 .add-book-wrapper {
   width: 340px;
   background-color: var(--color-bg-side);
-  /* display: flex;
-  justify-content: center; */
-  box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.664);
+  box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.664);
   z-index: 2;
 }
 
@@ -264,6 +267,7 @@ p.validation {
   color: var(--color-action-variant);
   margin-bottom: 0.7rem;
   margin-top: 0.5rem;
+  text-align: center;
 }
 
 input::placeholder {
@@ -484,9 +488,6 @@ i:hover {
 
 /* Media Queries (XXL Devices) */
 @media screen and (min-width: 2048px) {
- /*  main {
-    width: 80%;
-  } */
 }
 
 /* Media Queries (Medium Devices) */
@@ -517,7 +518,6 @@ i:hover {
 
   .counter-wrapper {
     width: 80%;
-    /* justify-content: space-evenly; */
     padding-left: 1.5%;
   }
 
@@ -678,11 +678,9 @@ i:hover {
   from {
     opacity: 0;
     transform: translateX(-100vw);
-    /* visibility: hidden; */
   }
 
   to {
-    /* visibility: visible; */
     opacity: 1;
     transform: translateX(0);
   }
@@ -691,7 +689,6 @@ i:hover {
 @-webkit-keyframes slideOut {
   from {
     opacity: 1;
-/*     left: 0; */
   }
 
   to {
@@ -703,7 +700,6 @@ i:hover {
 @keyframes slideOut {
   from {
     opacity: 1;
-    /* left: 0; */
   }
 
   to {
