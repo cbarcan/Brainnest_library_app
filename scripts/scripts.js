@@ -16,11 +16,11 @@ const modal = document.getElementById("modal");
 const editWrapper = document.getElementById("edit-book-wrapper");
 const toggleButton = document.getElementById("toggleForm");
 
-const updateLocalStorage = () =>{
+const updateLocalStorage = () => {
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-}
+};
 
-const retrieveBooks = () =>  {
+const retrieveBooks = () => {
   myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
 };
 
@@ -71,23 +71,23 @@ class Book {
       this.removeBookFromHTML();
     };
     if (width < 601) {
-      const titleLabel = document.createElement("p")
+      const titleLabel = document.createElement("p");
       titleLabel.classList.add("label");
-      titleLabel.innerText = "Title:"
+      titleLabel.innerText = "Title:";
       book.appendChild(titleLabel);
     }
     book.appendChild(title);
     if (width < 601) {
-      const authorLabel = document.createElement("p")
+      const authorLabel = document.createElement("p");
       authorLabel.classList.add("label");
-      authorLabel.innerText = "Author:"
+      authorLabel.innerText = "Author:";
       book.appendChild(authorLabel);
     }
     book.appendChild(author);
     if (width < 601) {
-      const pagesLabel = document.createElement("p")
+      const pagesLabel = document.createElement("p");
       pagesLabel.classList.add("label");
-      pagesLabel.innerText = "Pages:"
+      pagesLabel.innerText = "Pages:";
       book.appendChild(pagesLabel);
     }
     book.appendChild(pages);
@@ -98,6 +98,7 @@ class Book {
       icons.appendChild(edit);
       icons.appendChild(removal);
       book.appendChild(icons);
+      readStatus.onclick = () => this.statusChange();
     } else {
       book.appendChild(readStatus);
       book.appendChild(edit);
@@ -113,13 +114,17 @@ class Book {
   }
 
   removeBookFromLibrary() {
-    const index = myLibrary.indexOf(myLibrary.find((book) => book.title === this.title));
+    const index = myLibrary.indexOf(
+      myLibrary.find((book) => book.title === this.title)
+    );
     myLibrary.splice(index, 1);
     updateLocalStorage();
   }
 
   removeBookFromHTML() {
-    const title = Array.from(document.querySelectorAll(".title")).find((el) => el.textContent === this.title);
+    const title = Array.from(document.querySelectorAll(".title")).find(
+      (el) => el.textContent === this.title
+    );
     const book = title.parentElement;
     book.classList.add("removed");
     book.addEventListener("animationend", () => booksWrapper.removeChild(book));
@@ -134,15 +139,23 @@ class Book {
 
   statusChange() {
     this.readStatus = !this.readStatus;
-    const title = Array.from(document.querySelectorAll(".title")).find((el) => el.textContent === this.title);
+    const title = Array.from(document.querySelectorAll(".title")).find(
+      (el) => el.textContent === this.title
+    );
     const book = title.parentElement;
-    if (this.readStatus === true) {
+    if (this.readStatus === true && width > 601) {
       book.childNodes[3].innerHTML = `<i class="fa-solid fa-check"></i>`;
-    } else {
+    } else if (this.readStatus === false && width > 601) {
       book.childNodes[3].innerHTML = `<i class="fa-solid fa-xmark"></i>`;
+    } else if (this.readStatus === true && width < 601) {
+      book.childNodes[6].firstChild.innerHTML = `<i class="fa-solid fa-check"></i>`;
+    } else if (this.readStatus === false && width < 601) {
+      book.childNodes[6].firstChild.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
     }
     book.childNodes[3].firstChild.onclick = () => this.statusChange();
-    const index = myLibrary.indexOf(myLibrary.find((book) => book.title === this.title));
+    const index = myLibrary.indexOf(
+      myLibrary.find((book) => book.title === this.title)
+    );
     myLibrary[index].readStatus = this.readStatus;
     updateLocalStorage();
     if (this.readStatus !== true) {
@@ -157,9 +170,14 @@ class Book {
 
   openEditForm() {
     // Get the book object from myLibrary
-    const book = myLibrary[myLibrary.indexOf(myLibrary.find((book) => book.title === this.title))];
+    const book =
+      myLibrary[
+        myLibrary.indexOf(myLibrary.find((book) => book.title === this.title))
+      ];
     const editForm = document.getElementById("edit-form");
-    const bookTitle = Array.from(document.querySelectorAll(".title")).find((el) => el.textContent === book.title);
+    const bookTitle = Array.from(document.querySelectorAll(".title")).find(
+      (el) => el.textContent === book.title
+    );
     const bookElement = bookTitle.parentElement;
 
     // Populate the form fields with the book's current details
@@ -180,7 +198,6 @@ class Book {
       book.readStatus = document.getElementById("edit-read-status").checked;
 
       //Update the Book object
-
       this.title = document.getElementById("edit-title").value;
       this.author = document.getElementById("edit-author").value;
       this.pages = document.getElementById("edit-pages").value;
@@ -211,29 +228,29 @@ class Book {
 //--------------------- Add Book Section (H) ---------------------
 const addBook = (event) => {
   if (event !== undefined) {
-      event.preventDefault();
+    event.preventDefault();
   }
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
   const pages = parseInt(document.getElementById("pages").value);
   const read = document.getElementById("read").checked;
-  const titleValidation = myLibrary.every(element => {
-    if (element.title === title){
-      alert("This book is already in your Library!\nPlease add another book.")
+  const titleValidation = myLibrary.every((element) => {
+    if (element.title === title) {
+      alert("This book is already in your Library!\nPlease add another book.");
       document.getElementById("myForm").reset();
       return false;
     }
     return true;
-  })
+  });
   if (titleValidation) {
     const book = new Book(title, author, pages, read);
     book.addBookToLibrary();
     book.addBookToHTML();
     updateLocalStorage();
     document.getElementById("myForm").reset();
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   }
-}
+};
 
 const addBookModal = (event) => {
   if (event !== undefined) {
@@ -243,41 +260,41 @@ const addBookModal = (event) => {
   const author = document.getElementById("modal-author").value;
   const pages = parseInt(document.getElementById("modal-pages").value);
   const read = document.getElementById("modal-read").checked;
-  const titleValidation = myLibrary.every(element => {
-    if (element.title === title){
-      alert("This book is already in your Library!\nPlease add another book.")
-      document.getElementById("myForm").reset();
+  const titleValidation = myLibrary.every((element) => {
+    if (element.title === title) {
+      alert("This book is already in your Library!\nPlease add another book.");
+      document.getElementById("modal-myForm").reset();
       return false;
     }
     return true;
-  })
+  });
   if (titleValidation) {
     const book = new Book(title, author, pages, read);
     book.addBookToLibrary();
     book.addBookToHTML();
     updateLocalStorage();
-    document.getElementById("myForm").reset();
+    document.getElementById("modal-myForm").reset();
     modal.style.display = "none";
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   }
-}
+};
 
 const toggleForm = () => {
   modal.style.display = "flex";
-}
+};
 
 //--------------------- Counter Section ----------------------
 const readCounter = () => {
   counterRead++;
   readCount.innerHTML = counterRead;
   readCountMobile.innerHTML = counterRead;
-}
+};
 
 const unreadCounter = () => {
   let counterUnread = myLibrary.length - counterRead;
   unreadCount.innerText = counterUnread;
   unreadCountMobile.innerText = counterUnread;
-}
+};
 
 const deleteAll = () => {
   myLibrary = [];
@@ -291,75 +308,85 @@ const deleteAll = () => {
   totalCountMobile.innerText = myLibrary.length;
   updateLocalStorage();
   showLibrary();
-}
+};
 
 const sortByTitle = () => {
   retrieveBooks();
   myLibrary.sort((a, b) => {
-    let titleA =  a.title.toLowerCase();
+    let titleA = a.title.toLowerCase();
     let titleB = b.title.toLowerCase();
     if (titleA < titleB) {
-      return -1
-    } if (titleA > titleB) {
+      return -1;
+    }
+    if (titleA > titleB) {
       return 1;
     }
     return 0;
-  })
+  });
   updateLocalStorage();
   showLibrary();
-}
+};
 
 const sortByAuthor = () => {
   retrieveBooks();
   myLibrary.sort((a, b) => {
-    let authorA =  a.author.toLowerCase();
+    let authorA = a.author.toLowerCase();
     let authorB = b.author.toLowerCase();
     if (authorA < authorB) {
-      return -1
-    } if (authorA > authorB) {
+      return -1;
+    }
+    if (authorA > authorB) {
       return 1;
     }
     return 0;
-  })
+  });
   updateLocalStorage();
   showLibrary();
-}
+};
+
 //--------------------- List of Books Section ----------------
 const showLibrary = () => {
   booksWrapper.innerHTML = "";
   counterRead = 0;
   if (localStorage.getItem("myLibrary") !== null) {
     retrieveBooks();
-  };
-  myLibrary.forEach(book => {
-    const newBook = new Book(book.title, book.author, book.pages, book.readStatus)
+  }
+  myLibrary.forEach((book) => {
+    const newBook = new Book(
+      book.title,
+      book.author,
+      book.pages,
+      book.readStatus
+    );
     newBook.addBookToHTML();
   });
-}
+};
 
 //--------------------- Edit Book Section --------------------
 const closeEditForm = () => {
   document.getElementById("edit-book-wrapper").style.display = "none";
-}
+};
 
-document.getElementById("close-edit-form-button").addEventListener("click", () => closeEditForm);
+document
+  .getElementById("close-edit-form-button")
+  .addEventListener("click", () => closeEditForm);
 
 const closeModal = () => {
   modal.style.display = "none";
-}
+};
 
 window.addEventListener("resize", () => {
   width = screen.width;
   showLibrary();
-})
+});
 
 window.onclick = (event) => {
   if (event.target == modal) {
     modal.style.display = "none";
-  };
+  }
   if (event.target == editWrapper) {
     editWrapper.style.display = "none";
-  };
-}
+  }
+};
 
 showLibrary();
