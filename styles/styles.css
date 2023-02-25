@@ -431,7 +431,7 @@ p.author {
   width: 12%;
 }
 
-#status {
+.status {
   width: 18%;
   text-align: center;
   justify-content: center;
